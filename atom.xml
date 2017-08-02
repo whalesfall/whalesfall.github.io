@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>WhaleFall</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-08-02T14:25:22.286Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Mr.王</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>this关键字解析</title>
+    <link href="http://yoursite.com/2017/08/02/this%E5%85%B3%E9%94%AE%E5%AD%97%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2017/08/02/this关键字解析/</id>
+    <published>2017-08-02T14:11:19.000Z</published>
+    <updated>2017-08-02T14:25:22.286Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h1><p>独立函数调用,如果使用了非严格模式,this会绑定到全局对象(window)</p>
+<pre><code>function foo(){
+    console.log(this.a);
+ }
+var a = 2;
+foo(); // 2
+(function(){
+    &quot;use strict&quot;
+    foo(); // 2 
+})();
+</code></pre><p>独立函数调用,如果使用严格模式(strict mode),this 会绑定到undefined:</p>
+<pre><code>function foo() {
+    &quot;use strict&quot;;
+    console.log( this.a );
+}
+var a = 2;
+foo(); //报错!property &apos;a&apos; of undefined at foo
+</code></pre><p>这里有一个微妙但是非常重要的细节,虽然this的绑定规则完全取决于调用位置.<br>但是只有foo()运行在非strict mode下时,默认绑定才能绑定到全局对象<br>严格模式下调用foo()不会影响默认绑定规则</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var a = 2;
+(function(){
+    &quot;use strict&quot;;
+    foo(); //2
+})();
+</code></pre><h1 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h1><p>隐式绑定的规则是调用位置是否有上下文对象,或者说是否被某个对象拥有或者包含<br>当函数引用有上下文对象时,隐式绑定规则会把函数调用中的this绑定到这个上下文对象</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var obj = {
+    a: 2,
+    foo: foo
+};
+obj.foo(); //2
+</code></pre><p>对象属性引用链中只有最顶层或者说最后一层会影响调用位置</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var obj2 = {
+    a: 42,
+    foo: foo
+};
+var obj1 = {
+    a: 2,
+    obj2: obj2
+};
+obj1.obj2.foo(); //42
+//这里的最顶层或最后一层指的是obj2
+</code></pre><h1 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h1><p>一个最常见的 this 绑定问题就是被隐式绑定的函数会丢失绑定对象，也就是说它会应用默认绑定，从而把 this 绑定到全局对象或者 undefined 上，取决于是否是严格模式。</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var a = &quot;oops, global&quot;; 
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var bar = obj.foo; 
+bar(); // oops, globa
+</code></pre><p>参数传递其实就是一种隐式赋值，因此我们传入函数时也会被隐式赋值:</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+function doFoo(fn) {
+    fn(); 
+}
+
+var a = &quot;oops, global&quot;; 
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+doFoo( obj.foo );  // oops, global
+</code></pre><p>如果把函数传入语言内置的函数而不是传入你自己声明的函数，结果是一样的，没有区别<br>JavaScript环境中内置的 setTimeout() 函数实现和下面的伪代码类似：</p>
+<pre><code>function setTimeout(fn,delay) {
+    // 等待delay毫秒
+    fn(); // &lt;-- 调用位置！
+  }
+
+
+function foo() {
+    console.log( this.a );
+}
+
+var a = &quot;oops, global&quot;; 
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+setTimeout( obj.foo, 1000 );  // oops, global\
+</code></pre><p>下文会说怎么解决隐式丢失的问题.</p>
+<h1 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h1><p>我们不想在对象内部包含函数引用(在对象外声明一个函数,在对象里边调用这个函数)，而想在某个对象上强制调用函数(示例)<br>具体点说，可以使用函数的 call(..) 和 apply(..) 方法来实现显示绑定<br>在说显示绑定之前我们先说一下call()和apply()</p>
+<pre><code>function.apply(thisobj, args)
+//thsiobj - 调用function的对象.在函数体重,thisobj是关键字this的值
+//args      - 一个数组,它的元素是传递给函数function的参数值
+//返回值   - 调用函数function的返回值
+function.call(thisobj, args...)
+//thisobj - 调用function的对象.在函数主体中,thisobj是关键字this的值
+//atgs       - 任意多个参数,这些参数将传递给函数function
+
+//call()将指定的函数function作为对象thisobj的方法来调用，把参数列
+    表中thisobj后的参数传递给它，返回值是调用函数后的返回值。在函数体
+    内，关键字this引用thisobj对象。 
+</code></pre><p>普通对象属性查找:</p>
+<pre><code>function foo(a,b) {
+    console.log( this.a,a,b );
+}
+var obj = {
+    a:2
+};
+foo.call( obj,&quot;a&quot;,&quot;b&quot;); //2 a b
+//正常数组
+var a=Array.apply(null,{length:3});
+console.log(a);
+a.map(function(v,i){console.log(i)})
+
+//稀疏数组
+var b=new Array(3);
+console.log(b);
+b.map(function(v,i){console.log(i)})
+</code></pre><h1 id="硬绑定"><a href="#硬绑定" class="headerlink" title="硬绑定"></a>硬绑定</h1><p>先给出硬绑定一个小的demo然后再说什么是硬绑定</p>
+<pre><code>function foo() {
+    console.log( this.a );/
+}
+
+var a =1;
+var obj = {
+    a:2
+};
+var obj_test = {
+    a:&quot;test&quot;
+};
+var bar = function() {
+    console.log( this.a );
+    foo.call( obj );
+};
+
+bar(); // 1 2
+setTimeout( bar, 1000 ); // 1 2
+bar.call( obj_test ); //test  2   硬绑定的bar不可能再修改它的this(指的是foo中的this)
+</code></pre><p>我们来看看这个显式绑定变种到底是怎样工作的。我们创建了函数 bar() ，并在它的内部手动调用了 foo.call(obj) ，因此强制把 foo 的 this 绑定到了 obj 。无论之后如何调用函数 bar ，它总会手动在 obj 上调用 foo 。这种绑定是一种显式的强制绑定，因此我们称之为硬绑定。</p>
+<pre><code>示例:
+//硬绑定的典型应用场景就是创建一个包裹函数，传入所有的参数并返回接收到的所有值
+function foo(arg1,arg2) {
+    console.log( this.a,arg1,arg2);
+    return this.a + arg1;
+}
+var obj = {
+    a:2
+};
+var bar = function() {
+    return foo.apply( obj, arguments);
+};
+
+
+var b = bar(3,2); // 2 3 2
+console.log( b ); // 5
+
+
+示例:
+function foo(something,otherthing) {
+        console.log( this.a+&quot; &quot;+ something+&quot; &quot;+  otherthing);
+        return this.a + something;
+    }
+    // 简单的辅助绑定函数    bind函数的作用：返回一个新的函数，并且指定该新函数的this指向
+    function bind(fn, obj) {
+        return function() {
+                return fn.apply( obj, arguments );
+            };
+    }
+
+    var obj = {
+        a:2
+    };
+    var obj_test = {
+        a:22
+    };
+
+
+    var bar = bind( foo, obj);
+    var b = bar(3); // 2 3 undefined
+    console.log( b ); // 5
+
+    bar.call(obj_test,3);//2 3 undefined
+</code></pre><h1 id="硬绑定函数"><a href="#硬绑定函数" class="headerlink" title="硬绑定函数"></a>硬绑定函数</h1><p>给出一个小demo:</p>
+<pre><code>document.write(&quot;test&quot;);
+var altwrite = document.write;
+altwrite(&quot;hello&quot;); // 报错 TypeError
+</code></pre><p>altwrite()函数改变了write的this的指向，让它指向global或window对象，导致执行时提示非法调用异常.<br>以下是解决办法:</p>
+<pre><code>altwrite.bind(document)(&quot; hello&quot;);  // test hello
+altwrite.call(document, &quot; call&quot;);    // test hello
+altwrite.apply(document, [&quot; apply&quot;]);    // test hello
+altwrite(&quot;hello&quot;);
+</code></pre><h1 id="解决隐式丢失"><a href="#解决隐式丢失" class="headerlink" title="解决隐式丢失"></a>解决隐式丢失</h1><pre><code>function foo() {
+        console.log( this.a );
+    }
+
+    var a = &quot;oops, global&quot;; // a是全局对象的属性
+    var obj = {
+        a: 2,
+        foo: foo
+    };
+
+    var test = obj.foo;
+    test();
+
+
+
+    var bar = foo.bind(obj); //硬绑定
+    bar(); // &quot;2&quot;
+</code></pre><h1 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h1><p>我们重新定义一下JavaScript中的“构造函数”。JavaScript，构造函数只是一些使用 new 操作符时被调用的函数。</p>
+<p>它们并不会属于某个类，也不会实例化一个类。实际上，它们甚至都不能说是一种特殊的函数类型，它们只是被 new 操作符调用的普通函数而已。<br>!!!!!实际上并不存在所谓的“构造函数”，只有对于函数的“构造调用”</p>
+<p>使用 new 来调用函数，或者说发生构造函数调用时，对于我们的this来说。<br>这个新对象会绑定到函数调用的 this 。</p>
+<pre><code>function foo(a) {
+    this.a = a;
+}
+var bar = new foo(2);
+console.log( bar.a ); // 2
+</code></pre><p>使用 new 来调用 foo(..) 时，我们会构造一个新对象并把它绑定到 foo(..) 调用中的 this 上。<br>new 是最后一种可以影响函数调用时 this 绑定行为的方法，我们称之为 new 绑定。</p>
+<h1 id="绑定例外"><a href="#绑定例外" class="headerlink" title="绑定例外"></a>绑定例外</h1><p>示例:</p>
+<pre><code>function foo() {
+  setTimeout(() =&gt; {
+    console.log(&apos;id:&apos;, this.id); 
+  }, 100);
+}
+
+var id = 21;
+
+foo.call({ id: 42 })
+</code></pre><p>如果你把null或者undefined作为this的绑定对象传入call、apply或者 bind，这些值在调用时会被忽略，实际应用的是默认绑定规则。</p>
+<pre><code>function foo() {
+    console.log( this.a );
+}
+var a = 2222;
+foo.call( null ); // 2
+</code></pre><h1 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h1><p>给目标函数预绑定一些参数<br>示例:</p>
+<pre><code>function foo(a,b) {
+    console.log( &quot;a:&quot; + a + &quot;, b:&quot; + b );
+}
+// 把数组“展开”成参数
+foo.apply( null, [2, 3] ); // a:2, b:3
+
+// 使用 bind(..) 进行柯里化
+var bar = foo.bind( null, [2] );
+bar( 3 ); // a:2, b:3
+</code></pre><p>示例:</p>
+<pre><code>function foo(a,b) {
+    console.log( &quot;a:&quot; + a + &quot;, b:&quot; + b );
+}
+// 我们的DMZ空对象,“DMZ”（demilitarized zone，非军事区）
+var ø = Object.create( null );//{}
+// 把数组展开成参数
+foo.apply( ø, [2, 3] ); // a:2, b:3
+// 使用bind(..)进行柯里化
+var bar = foo.bind( ø, 2 );
+bar( 3 ); // a:2, b:3
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;默认绑定&quot;&gt;&lt;a href=&quot;#默认绑定&quot; class=&quot;headerlink&quot; title=&quot;默认绑定&quot;&gt;&lt;/a&gt;默认绑定&lt;/h1&gt;&lt;p&gt;独立函数调用,如果使用了非严格模式,this会绑定到全局对象(window)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://yoursite.com/categories/JavaScript/"/>
+    
+    
+      <category term="JavaScript高级" scheme="http://yoursite.com/tags/JavaScript%E9%AB%98%E7%BA%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一天学会hexo</title>
+    <link href="http://yoursite.com/2017/08/01/%E4%B8%80%E5%A4%A9%E5%AD%A6%E4%BC%9Ahexo/"/>
+    <id>http://yoursite.com/2017/08/01/一天学会hexo/</id>
+    <published>2017-08-01T00:09:31.000Z</published>
+    <updated>2017-08-02T14:20:38.349Z</updated>
+    
+    <content type="html"><![CDATA[<p>如果你是一个有1-3年工作经验的人相信读完这篇文章你会有所收获,如果你会jquery并且掌握不错的情况下读完此篇文章,那么恭喜你学习了一个框架。</p>
+<h1 id="zepto简介"><a href="#zepto简介" class="headerlink" title="zepto简介"></a>zepto简介</h1><pre><code>- zepto是轻量级的JavaScript库，专门为移动端定制的框架
+- 与jquery有着类似的API，俗称：会jquery就会用zepto
+</code></pre><h1 id="zepto的特点"><a href="#zepto的特点" class="headerlink" title="zepto的特点"></a>zepto的特点</h1><pre><code>- 针对移动端
+- 轻量级，压缩版本只有8kb左右
+- 响应，执行快
+- 语法，API大部分同jquery一样，学习难度低，上手快
+- 目前API完善的框架中体积最小的一个(没有之一)
+</code></pre><h1 id="zepto与jquery的前世今生"><a href="#zepto与jquery的前世今生" class="headerlink" title="zepto与jquery的前世今生"></a>zepto与jquery的前世今生</h1><pre><code>- 相同点:
+    - 都是优秀的js函数库
+    - 语法，API大部分都一样（zepto是按照jquery的思路来设计的）
+    - zepto相当于jquery的子集
+    - 同jquery一样都是以$为核心函数
+- 不同点:
+    - jquery:
+        - 针对的更多的是PC端
+        - 体积较重
+        - API较为完善
+    - zepto
+        - 针对的是移动端
+        - 体积较轻
+        - 有自己独特的移动端事件
+</code></pre><h1 id="zepto-core"><a href="#zepto-core" class="headerlink" title="zepto core"></a>zepto core</h1><pre><code>- 核心函数
+    - 作为函数调用
+        - 参数为函数
+        - 参数为选择器字符串
+        - 参数为DOM code
+        - 参数为html标签字符串
+    - 作为对象使用
+        - 发送ajax请求 - $.ajax() 等
+        - 其他api方法  - $.each() 等
+- 与jquery不同的API
+    - DOM操作
+    - each方法
+    - offset()
+    - width()height()
+    - 事件委托
+    - 隐藏元素
+    - attr与prop
+</code></pre><h1 id="zepto事件机制"><a href="#zepto事件机制" class="headerlink" title="zepto事件机制"></a>zepto事件机制</h1><pre><code>- touch Event
+    - tap()
+    - singleTap()
+    - doubleTap()
+    - longTap()
+    - swipe()
+- Event
+    - zepto有自己的一套事件机制，并且对不同的浏览器做了内部的封装处理。
+    - 舍弃了bind，delegate，die，同样jquery中舍弃了live，delegate等
+    - 统一使用on，off等标准事件
+</code></pre><h1 id="form"><a href="#form" class="headerlink" title="form"></a>form</h1><pre><code>- serialize() - 在Ajax post请求中将用作提交的表单元素的值编译成 URL-encoded 字符串。
+- serializeArray() - 将用作提交的表单元素的值编译成拥有name和value对象组成的数组
+                    - 不能使用的表单元素，buttons，未选中的radio buttons/checkboxs 将会被跳过。 
+- submit() - 为 &quot;submit&quot; 事件绑定一个处理函数，或者触发元素上的 &quot;submit&quot; 事件。
+</code></pre><h1 id="-zepto和jquery方法的不同"><a href="#zepto和jquery方法的不同" class="headerlink" title="- zepto和jquery方法的不同"></a>- zepto和jquery方法的不同</h1><pre><code>-     attr与prop的区别:
+    -     jquery
+        -         prop多用在标签的固有属性，布尔值属性。比如：a标签的href，class，selected，checked等。
+        -         attr多用在自定义属性上。
+        -         jquery中用attr获取布尔值属性且布尔值属性在标签体内没有定义的时候会得到 undefined；
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(function () &#123;</div><div class="line">	$(&apos;option&apos;).each(function () &#123;</div><div class="line">			//console.log($(this).prop(&apos;selected&apos;));</div><div class="line">			console.log($(this).attr(&apos;selected&apos;));</div><div class="line">		&#125;)</div><div class="line">	&#125;)</div></pre></td></tr></table></figure>
+
+    - zepto
+        - 在zepto中用attr也可以获取布尔值属性;
+        -         prop在读取属性的时候 优先级 高于attr，布尔值属性的读取还是建议用prop;
+        -         坑！------zepto中 removeProp()的方法。在1.2+版本才支持。
+- DOM操作:
+    -  jquery
+        -  jquery中插入DOM元素的时候添加配置对象(比如：id，class等。。。)不起作用。
+    - zepto
+        - 插入DOM元素的时候添加配置对象（id，class等。。）的时候可以添加进去，并且会直接显示在标签属性内，可以操作，影响DOM元素。
+- each():
+    - jquery
+        - $.each(collection, function(index, item){ ... })
+        - 可以遍历数组,以index，item的形式。
+        - 可以遍历对象，以key-value的形式。
+        - 不可以遍历字符串。
+    - zepto
+        - $.each(collection, function(index, item){ ... })
+        - 可以遍历数组,以index，item的形式。
+        - 可以遍历对象，以key-value的形式。
+        - 可以遍历字符串。
+        - 遍历json对象以字符串的形式遍历。 
+- offset():
+    - jquery
+        - 获取匹配元素在当前视口的相对偏移。
+        - 返回的对象包含两个整型属性：top 和 left。此方法只对可见元素有效。
+    - zepto
+        - 获得当前元素相对于视口的位置。
+        - 返回一个对象含有： top, left, width和height(获取到的width，height都是包含padding和border的值)。
+- 获取宽高:
+    - jquery
+        - width(),height()---content内容区的宽高，没有单位px。
+        - .css(&apos;width&apos;)----可以获取content内容区的宽高、padding、border的值，有单位px。
+        - innerHeight(),innerWidth()---outerHeight(),outerWidth()来获取。
+    - zepto
+        - zepto中的width(),height()是根据盒模型来取值的，包含补白和border的值。且不带单位。
+        - zepto中没有innerHeight(),innerWidth()---outerHeight(),outerWidth()。
+        - .css获取的width，height是内容区的宽高，包含单位。
+        - 通过.css()获取padding，border的值。
+- 事件委托:
+    - jquery
+            - $(function () {
+                $(&apos;#box&apos;).on(&apos;click&apos;, &apos;.a&apos;, function () {
+                    alert(&apos;我是a触发的事件委托&apos;);
+                    $(this).removeClass(&apos;a&apos;).addClass(&apos;b&apos;);
+                });
+
+                //b的事件委托
+                $(&apos;#box&apos;).on(&apos;click&apos;, &apos;.b&apos;, function () {
+                    alert(&apos;我是b触发的事件委托&apos;);
+                    $(this).removeClass(&apos;b&apos;).addClass(&apos;a&apos;);
+                });
+                $(&apos;#box&apos;).append(&apos;&lt;p class=&quot;a&quot;&gt;我是新添加的p标签&lt;/p&gt;&apos;)
+            });
+            - 点击a的时候弹出&quot;我是a触发的事件委托&quot;,a的class变为 b
+            - 点击b的时候弹出&quot;我是b触发的事件委托&quot;,b的class变为 a
+
+    - zepto
+        - 坑！！！！
+            - 在zepto中事件委托 委托在同一个父元素身上的时候
+            - 委托的事件先被依次放入数组队列里，然后由自身开始往后找直到找到最后，期间符合条件的元素委托的事件都会执行。
+               1、委托在同一个父元素
+                2、同一个事件
+                3、委托关联  操作的类要进行关联
+                4、顺序---从当前的位置往后看
+                    $(function () {
+                    $(&apos;body&apos;).on(&apos;touchstart&apos;, &apos;.a&apos;, function () {
+                        alert(&apos;我是a触发的事件委托&apos;);
+                        $(this).removeClass(&apos;a&apos;).addClass(&apos;b&apos;);
+                    });
+                    //b额事件委托
+                    $(&apos;#box&apos;).on(&apos;touchstart&apos;, &apos;.b&apos;, function () {
+                        $(&apos;#box1&apos;).css(&apos;background&apos;, &apos;red&apos;)
+                        console.log(this)
+                        alert(&apos;我是b触发的事件委托&apos;);
+                        $(this).removeClass(&apos;b&apos;).addClass(&apos;a&apos;);
+                    });
+                    $(&apos;#box&apos;).append(&apos;&lt;p class=&quot;a&quot;&gt;我是新添加的p标签&lt;/p&gt;&apos;)
+                    });
+                    - 点击a触发&quot;我是a触发的事件委托&quot;a的class变成b
+                    - 点击b会先触发&quot;我是b触发的事件委托&quot;,然后再弹出&quot;我是a触发的事件委托&quot;,在a中console.log(this),则输出的是b。
+- tocuh Event
+    - jquery
+        -     on()  绑定事件处理程序
+        -    off() 方法移除用目标元素on绑定的事件处理程序。
+        -    bind()  为每个匹配元素的特定事件绑定事件处理函数，可同时绑定多个事件，也可以自定义事件。
+        -    one() 为每一个匹配元素的特定事件（像click）绑定一个一次性的事件处理函数。只执行一次。
+        -    trigger() 触发有bind定义的事件（通常是自定义事件）
+        -    unbind()  bind的反向操作，删除匹配元素所绑定的bind事件。
+    - zepto
+        - tap()  点击事件 利用在document上绑定touch事件来模拟tap事件的，并且tap事件会冒泡到document上
+        - singleTap()  点击事件
+        - doubleTap()  双击事件
+        - longTap()    当一个元素被按住超过750ms触发。
+        - swipe, swipeLeft, swipeRight, swipeUp,swipeDown — 当元素被划过（同一个方向大于30px）时触发。(可选择给定的方向)
+        - 在一个方向滑动大于30px即为滑动。否则算点击。
+- event
+    - zepto有自己的一套事件机制，并且对不同的浏览器做了兼容的内部封装处理。
+    - 像新版本的zepto中已经舍弃了bind，delegate，die，同样jquery中舍弃了live等。
+    - 现在统一使用on，off标准事件来绑定事件。
+            $(function () {
+            //事件绑定
+                $(&apos;#box&apos;).on(&apos;touchstart&apos;,function () {
+                   alert(&apos;on事件&apos;);
+                });
+
+                    $(&apos;#box&apos;).off();
+
+            //事件委托
+                $(&apos;#box1&apos;).on(&apos;touchstart&apos;,&apos;p&apos;,function () {
+                    alert($(this).html());
+                });
+            });
+- form
+    - serialize()
+        - 在Ajax post请求中将用作提交的表单元素的值编译成 URL-encoded 字符串。---key(name)/value
+        - 不能使用的表单元素，buttons，未选中的radio buttons/checkboxs 将会被跳过。
+    - serializeArray()
+        - 将用作提交的表单元素的值编译成拥有name和value对象组成的数组。
+        - 不能使用的表单元素，buttons，未选中的radio buttons/checkboxs 将会被跳过。
+    - submit()
+        - 为 &quot;submit&quot; 事件绑定一个处理函数，或者触发元素上的 &quot;submit&quot; 事件。
+        - 当参数function没有给出时，触发当前表单“submit”事件，并且执行默认的提交表单行为，除非阻止默认行为。
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如果你是一个有1-3年工作经验的人相信读完这篇文章你会有所收获,如果你会jquery并且掌握不错的情况下读完此篇文章,那么恭喜你学习了一个框架。&lt;/p&gt;
+&lt;h1 id=&quot;zepto简介&quot;&gt;&lt;a href=&quot;#zepto简介&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="zepto" scheme="http://yoursite.com/categories/zepto/"/>
+    
+    
+      <category term="zepto" scheme="http://yoursite.com/tags/zepto/"/>
+    
+  </entry>
+  
+</feed>
