@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WhaleFall" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="jQuery中的事件页面加载原生DOM中的事件具有页面加载的内容onload事件，在jQuery中同样提供了对应的内容ready()函数。 ready与onload之间的区别：  onload: 没有简写方式 当HTML页面所有内容加载完毕后才执行onload 一个HTML页面只能编写一个onload   ready: 具有简写方式 当DOM节点加载完毕后就执行ready 一个HTML页面允许同时">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery(二)">
+<meta property="og:url" content="http://yoursite.com/2017/08/08/jQuery-二/index.html">
+<meta property="og:site_name" content="WhaleFall">
+<meta property="og:description" content="jQuery中的事件页面加载原生DOM中的事件具有页面加载的内容onload事件，在jQuery中同样提供了对应的内容ready()函数。 ready与onload之间的区别：  onload: 没有简写方式 当HTML页面所有内容加载完毕后才执行onload 一个HTML页面只能编写一个onload   ready: 具有简写方式 当DOM节点加载完毕后就执行ready 一个HTML页面允许同时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://i.imgur.com/c3sHFLa.png">
+<meta property="og:image" content="http://i.imgur.com/nOxK2i0.png">
+<meta property="og:image" content="http://i.imgur.com/zhmd2OO.png">
+<meta property="og:updated_time" content="2017-08-10T09:05:07.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery(二)">
+<meta name="twitter:description" content="jQuery中的事件页面加载原生DOM中的事件具有页面加载的内容onload事件，在jQuery中同样提供了对应的内容ready()函数。 ready与onload之间的区别：  onload: 没有简写方式 当HTML页面所有内容加载完毕后才执行onload 一个HTML页面只能编写一个onload   ready: 具有简写方式 当DOM节点加载完毕后就执行ready 一个HTML页面允许同时">
+<meta name="twitter:image" content="http://i.imgur.com/c3sHFLa.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script type="text/javascript" src="high.js"></script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/08/jQuery-二/"/>
+
+
+
+
+
+  <title>jQuery(二) | WhaleFall</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+	<a href="https://github.com/whalesfall"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WhaleFall</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/08/jQuery-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr.王">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WhaleFall">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T16:02:30+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="jquery中的事件"><a href="#jQuery中的事件" class="headerlink" title="jQuery中的事件"></a>jQuery中的事件</h1><h2 id="页面加载"><a href="#页面加载" class="headerlink" title="页面加载"></a>页面加载</h2><p>原生DOM中的事件具有页面加载的内容onload事件，在jQuery中同样提供了对应的内容ready()函数。</p>
+<p>ready与onload之间的区别：</p>
+<ul>
+<li>onload:<ul>
+<li>没有简写方式</li>
+<li>当HTML页面所有内容加载完毕后才执行onload</li>
+<li>一个HTML页面只能编写一个onload</li>
+</ul>
+</li>
+<li>ready:<ul>
+<li>具有简写方式</li>
+<li>当DOM节点加载完毕后就执行ready</li>
+<li>一个HTML页面允许同时编写多个ready</li>
+</ul>
+</li>
+</ul>
+<p>ready()的编写方式：</p>
+<ul>
+<li>$(document).ready(function(){});</li>
+<li>$().ready(function(){});</li>
+<li>$(function(){});</li>
+</ul>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>jQuery中提供了事件绑定与解绑机制，类似于原生DOM中的addEventListener()方法。</p>
+<h3 id="单事件绑定"><a href="#单事件绑定" class="headerlink" title="单事件绑定"></a>单事件绑定</h3><p>单事件绑定就是指为指定元素绑定一个指定的事件，例如click、change等。</p>
+<h3 id="多事件绑定"><a href="#多事件绑定" class="headerlink" title="多事件绑定"></a>多事件绑定</h3><p>多事件绑定就是为指定元素同时绑定多个指定的事件，例如同时绑定mouseover和mouseout事件等。</p>
+<h2 id="模拟操作"><a href="#模拟操作" class="headerlink" title="模拟操作"></a>模拟操作</h2><p>模拟操作就是指通过程序模拟用户在页面中的操作，比如用户点击某个按钮的事件完成一个效果，jQuery中可以通过该方法模拟用户点击按钮事件。也就是说，不需要用户的操作行为，而是我们通过程序来模拟用户操作。</p>
+<pre><code>$(&apos;#btn&apos;).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数1&lt;/p&gt;&quot;);
+}).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数2&lt;/p&gt;&quot;);
+}).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数3&lt;/p&gt;&quot;);
+});
+$(&apos;#btn&apos;).trigger(&quot;click&quot;);
+</code></pre><h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><h3 id="什么是事件冒泡"><a href="#什么是事件冒泡" class="headerlink" title="什么是事件冒泡"></a>什么是事件冒泡</h3><p>在一个对象上触发某类事件（比如单击onclick事件），如果此对象定义了此事件的处理程序，那么此事件就会调用这个处理程序，如果没有定义此事件处理程序或者事件返回true，那么这个事件会向这个对象的父级对象传播，从里到外，直至它被处理（父级对象所有同类事件都将被激活），或者它到达了对象层次的最顶层，即document对象（有些浏览器是window）。</p>
+<h3 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h3><ul>
+<li>DOM标准：event.stopPropagation()</li>
+<li>IE: event.cancelBubble=true</li>
+</ul>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><h3 id="什么是事件对象"><a href="#什么是事件对象" class="headerlink" title="什么是事件对象"></a>什么是事件对象</h3><p>事件是一种JavaScript结构，它会在元素获得处理事件的机会时被传递给被调用的事件处理程序。这个对象中包含与事件相关的信息，也提供了可以影响事件在DOM中传递进程的一些方法。</p>
+<h3 id="事件对象的常用属性"><a href="#事件对象的常用属性" class="headerlink" title="事件对象的常用属性"></a>事件对象的常用属性</h3><ul>
+<li>srcElement/target : 事件源对象</li>
+<li>eventPhase : 事件所处的传播阶段</li>
+<li>clientX/offsetX/pageX/screenX/x：事件发生的X坐标</li>
+<li>clientY/offsetY/pageY/screenY/y：事件发生的Y坐标</li>
+<li>which/keyCode/charCode : 键盘事件中按下的按键</li>
+<li>button：鼠标哪个按键被按下了</li>
+<li>cancelBubble ：是否取消事件冒泡</li>
+<li>returnValue : 是否阻止事件默认行为</li>
+</ul>
+<h3 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h3><p>所谓默认行为，就是指页面中默认具有的一些行为，例如表单提交、连接跳转等效果。</p>
+<ul>
+<li><code>event.preventDefault();</code></li>
+<li><code>return false;</code></li>
+</ul>
+<hr>
+<h1 id="jquery类数组操作"><a href="#jQuery类数组操作" class="headerlink" title="jQuery类数组操作"></a>jQuery类数组操作</h1><p>类数组对象就是结构上类似于数组的对象，该对象具备数组的一些特性属性或方法，同时具有自己独特的一些属性或方法。</p>
+<h2 id="数组与类数组对象的区别"><a href="#数组与类数组对象的区别" class="headerlink" title="数组与类数组对象的区别"></a>数组与类数组对象的区别</h2><ul>
+<li>数组的类型是Array</li>
+<li>类数组对象的类型是Object</li>
+</ul>
+<h2 id="类数组的操作"><a href="#类数组的操作" class="headerlink" title="类数组的操作"></a>类数组的操作</h2><ul>
+<li>length属性：获取指定元素的个数。</li>
+<li>eq(index)：将下标等于index的DOM对象取出来。</li>
+<li>get(index)：返回一个DOM对象组成的数组。</li>
+<li>index（obj）：返回DOM或jQuery对象在类数组中的下标。</li>
+<li><p>遍历方法：</p>
+<ul>
+<li><p>$(selector).each(callback)</p>
+<ul>
+<li><p>callback：回调函数，function(index,domEle){}</p>
+<ul>
+<li>index：遍历过程中的索引值</li>
+<li><p>domEle：遍历后得到的DOM对象</p>
+<pre><code>$.each($(&quot;input&quot;),function(index,domEle){
+    console.log(domEle.value);
+    console.log($(domEle).val());
+    console.log(this.value);
+    console.log($(this).val());
+});
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>$.makeArray(obj) 将类数组对象转换为数组对象</p>
+</li>
+<li><p>$.inArray(value, array)  查找元素在数组中的位置<br>确定第一个参数在数组中的位置，从0开始(如果没有找到则返回 -1 )</p>
+</li>
+<li><p>$.toArray() 把jQuery集合中所有DOM元素恢复成一个数组。</p>
+</li>
+</ul>
+<h1 id="jquery插件"><a href="#jQuery插件" class="headerlink" title="jQuery插件"></a>jQuery插件</h1><h2 id="jquery-日期插件"><a href="#jQuery-日期插件" class="headerlink" title="jQuery 日期插件"></a>jQuery 日期插件</h2><p>layDate日期插件致力于成为全球最用心的web日期支撑，为国内外所有从事web应用开发的同仁提供力所能及的动力。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;01_laydate插件的基本使用&lt;/title&gt;
+    &lt;script src=&quot;laydate/laydate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input placeholder=&quot;请输入日期&quot; class=&quot;laydate-icon&quot; onclick=&quot;laydate()&quot;&gt;
+    &lt;br&gt;
+    &lt;input placeholder=&quot;请输入日期&quot; id=&quot;hello1&quot;&gt;
+    &lt;span class=&quot;laydate-icon&quot; onclick=&quot;laydate({elem: &apos;#hello1&apos;});&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="laydate-api选项"><a href="#layDate-API选项" class="headerlink" title="layDate API选项"></a>layDate API选项</h3><ul>
+<li>elem: ‘#id’, //需显示日期的元素选择器</li>
+<li>event: ‘click’, //触发事件</li>
+<li>format: ‘YYYY-MM-DD hh!’, //日期格式</li>
+<li>istime: false, //是否开启时间选择</li>
+<li>isclear: true, //是否显示清空</li>
+<li>istoday: true, //是否显示今天</li>
+<li>issure: true, 是否显示确认</li>
+<li>festival: true //是否显示节日</li>
+<li>min: <code>1900-01-01 00:00:00</code>, //最小日期</li>
+<li>max: <code>2099-12-31 23:59:59</code>, //最大日期</li>
+<li>start: <code>2014-6-15 23:00:00</code>, //开始日期</li>
+<li>fixed: false, //是否固定在可视区域</li>
+<li>zIndex: 99999999, //css z-index</li>
+<li>choose: function(dates){} //选择好日期的回调</li>
+</ul>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;02_laydate插件的高级使用&lt;/title&gt;
+    &lt;script src=&quot;jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;laydate/laydate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input id=&quot;mydate&quot; placeholder=&quot;请输入日期&quot; class=&quot;laydate-icon&quot;&gt;
+    &lt;script&gt;
+        laydate({
+            elem : &quot;#mydate&quot;,
+            event : &quot;focus&quot;,
+            istime : true,
+            isclear : false,
+            istoday : false,
+            issure : false
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="表单验证插件"><a href="#表单验证插件" class="headerlink" title="表单验证插件"></a>表单验证插件</h2><p>表单验证插件主要是针对表单元素的值进行验证，并给出响应的图形以及文字提示。</p>
+<h3 id="常用验证插件"><a href="#常用验证插件" class="headerlink" title="常用验证插件"></a>常用验证插件</h3><ul>
+<li>formValidator</li>
+<li>jQuery.validator</li>
+<li>easyForm</li>
+<li>validate.js</li>
+</ul>
+<h3 id="jqueryvalidator插件"><a href="#jQuery-validator插件" class="headerlink" title="jQuery.validator插件"></a>jQuery.validator插件</h3><p>该插件提供用户方便地实现表单验证，同时还提供大量的定制选项。<br>官方地址：<a href="http://jqueryvalidation.org/" target="_blank" rel="external">http://jqueryvalidation.org/</a></p>
+<ol>
+<li>引入必要文件<ul>
+<li>引入jQuery库文件</li>
+<li>引入插件文件 dist/jquery.validate.js</li>
+<li>引入国际化文件 (提示语言文件)<br>dist–localization–message_zh.js 中文提示语言</li>
+</ul>
+</li>
+<li>在HTML页面定义表单<ul>
+<li>表单的元素使用HTML5提供的新表单验证功能</li>
+<li>required 表示必填项</li>
+</ul>
+</li>
+<li>在JS逻辑中填写<ul>
+<li>通过表单调用validate()核心方法<br>$().validate();</li>
+</ul>
+</li>
+</ol>
+<h3 id="validation基本使用"><a href="#validation基本使用" class="headerlink" title="validation基本使用"></a>validation基本使用</h3><pre><code>&lt;div id=&quot;main&quot;&gt;
+    &lt;p&gt;Take a look at the source to see with metadata.&lt;/p&gt;
+    &lt;!-- Custom rules and messages via data- attributes --&gt;
+    &lt;form class=&quot;cmxform&quot; id=&quot;commentForm&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Please enter your email address&lt;/legend&gt;
+            &lt;p&gt;
+                &lt;label for=&quot;cemail&quot;&gt;E-Mail *&lt;/label&gt;
+                &lt;input id=&quot;cemail&quot; name=&quot;email&quot; data-rule-required=&quot;true&quot; 
+        data-rule-email=&quot;true&quot; 
+        data-msg-required=&quot;Please enter your email address&quot; 
+        data-msg-email=&quot;Please enter a valid email address&quot;&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+                &lt;input class=&quot;submit&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+            &lt;/p&gt;
+        &lt;/fieldset&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $(document).ready(function() {
+        $(&quot;#commentForm&quot;).validate();
+    });
+&lt;/script&gt;
+</code></pre><h3 id="validate验证方法的选项"><a href="#validate-验证方法的选项" class="headerlink" title="validate()验证方法的选项"></a>validate()验证方法的选项</h3><table><thead><tr><th>选项名称</th><th>描述说明</th></tr></thead><tbody><tr><td>debug</td><td>设置是否为调试模式，如果为调试模式表单不会被提交。</td></tr><tr><td>submitHandler</td><td>表单提交时的回调函数，一般用于提交当前表单。</td></tr><tr><td>rules</td><td>设置表单元素的验证规则，格式为key:value。</td></tr><tr><td>messages</td><td>设置表单元素验证不通过时的错误提示信息。</td></tr><tr><td>errorClass</td><td>自定义错误提示信息的样式。</td></tr><tr><td>ignore</td><td>设置哪些表单元素不进行验证。</td></tr></tbody></table>
+
+<h3 id="validation自定义验证"><a href="#validation自定义验证" class="headerlink" title="validation自定义验证"></a>validation自定义验证</h3><ul>
+<li>$().validate(options)</li>
+<li><p>rules  自定义的验证规则</p>
+<ul>
+<li>key 要验证的表单元素的name属性值</li>
+<li><p>value 指定使用的验证规则名称</p>
+<pre><code>rules : {
+   email:true, //输入正确的email格式
+   number:true, //输入合法的数字
+}
+</code></pre></li>
+</ul>
+</li>
+<li><p>equalTo : “相同内容的id”</p>
+</li>
+<li><p>messages 自定义的错误提示</p>
+<pre><code>messages : {
+    key : &apos; value &apos;
+}
+</code></pre></li>
+<li><p>自定义错误提示的显示位置(单选和多选框)</p>
+<ul>
+<li>自定义的错误提示默认出现在第一个被验证的元素后面</li>
+<li>自定义的错误提示应该出现在一组验证元素的后面</li>
+<li><p>自定义了用于显示错误提示信息的标签</p>
+<p>  <code>&lt;label for=&quot;&quot; class=&quot;error&quot;&gt;&lt;/label&gt;</code></p>
+</li>
+<li><p>class 插件底层的错误提示信息的样式</p>
+</li>
+<li>for 告知插件当前错误提示信息与哪个指定的验证元素相关</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/c3sHFLa.png" alt=""></p>
+<h2 id="自定义验证方法"><a href="#自定义验证方法" class="headerlink" title="自定义验证方法"></a>自定义验证方法</h2><p>jQuery.validator.addMethod( name, method [, message ] )方法</p>
+<ul>
+<li>name：设置验证方法的名称。</li>
+<li>method：回调函数，function(value,element,param){}<ul>
+<li>value：元素的值</li>
+<li>element：元素本身</li>
+<li>param：参数</li>
+</ul>
+</li>
+<li>message：设置验证不通过的错误提示信息。</li>
+</ul>
+<h1 id="jquery-ui"><a href="#jQuery-UI" class="headerlink" title="jQuery  UI"></a>jQuery  UI</h1><p>jQuery UI能做的事可谓是包罗万象。实际上，jQuery UI在某种意义上并不是插件，而是一个完整的插件库。</p>
+<p>jQuery UI中主要包含以下几个功能：</p>
+<ul>
+<li>Effect（效果）</li>
+<li>Interactions（交互组件）</li>
+<li>Widget（部件）</li>
+<li>此外，还为jQuery和核心动画提供了很多高级效果。</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>引入ui – jquery-ui.js</li>
+<li>引入themes – base – jquery-ui.css / imagse(同级目录)</li>
+<li>引入demos – demos.css</li>
+</ul>
+<h2 id="effect效果"><a href="#Effect（效果）" class="headerlink" title="Effect（效果）"></a>Effect（效果）</h2><h3 id="animate-方法"><a href="#animate-方法" class="headerlink" title="animate( )方法"></a>animate( )方法</h3><p>文档在引入核心效果文件的情况下，扩展的.animate()方法可接受另外一些样式属性。</p>
+<p>扩展后animate方法接受以下属性：</p>
+<ul>
+<li>backgroundColor</li>
+<li>borderBottomColor</li>
+<li>borderLeftColor</li>
+<li>borderRightColor</li>
+<li>borderTopColor</li>
+<li>Color</li>
+<li>outlineColor</li>
+</ul>
+<pre><code>var state = true;
+$( &quot;#button&quot; ).click(function() {
+    if ( state ) {
+        $( &quot;#effect&quot; ).animate({
+            backgroundColor: &quot;#aa0000&quot;,
+            color: &quot;#fff&quot;,
+            width: 500
+        }, 1000 );
+    } else {
+        $( &quot;#effect&quot; ).animate({
+            backgroundColor: &quot;#fff&quot;,
+            color: &quot;#000&quot;,
+            width: 240
+        }, 1000 );
+    }
+    state = !state;
+});
+</code></pre><h3 id="effect-方法"><a href="#effect-方法" class="headerlink" title="effect( )方法"></a>effect( )方法</h3><ul>
+<li><p>扩展后animate()方法接受以下属性：</p>
+<p>  backgroundColor<br>  borderBottomColor<br>  borderLeftColor<br>  borderRightColor<br>  borderTopColor<br>  Color<br>  outlineColor</p>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/nOxK2i0.png" alt=""></p>
+<h2 id="interactions交互组件"><a href="#Interactions（交互组件）" class="headerlink" title="Interactions（交互组件）"></a>Interactions（交互组件）</h2><h3 id="draggable-widget"><a href="#Draggable-Widget" class="headerlink" title="Draggable Widget"></a>Draggable Widget</h3><p> $( “#draggable” ).draggable();</p>
+<ul>
+<li>start：当拖动开始时触发。</li>
+<li>drag：当鼠标在拖动过程中移动时触发。</li>
+<li><p>stop：当拖动停止时触发。</p>
+<p>draggable()的选项</p>
+</li>
+<li>约束运动<ul>
+<li>axis：设置只能在x轴或y轴方向拖动。</li>
+<li>containment：设置在某个区域内拖动。</li>
+</ul>
+</li>
+<li><p>光标样式</p>
+<ul>
+<li>cursor：设置拖动时鼠标的样式。</li>
+<li>cursorAt：设置鼠标的相对定位。</li>
+<li>handle：设置指定元素触发鼠标按下事件才能拖动。</li>
+<li>cancel：防止在指定元素上拖动。</li>
+<li>revert：当停止拖动时，元素是否被重置到初始位置。</li>
+<li>snap：拖动元素是否吸附在其他元素。</li>
+<li>snapMode：设置拖动元素吸附指定元素的哪个边缘。</li>
+<li>snap设置为true时该选项有效。<ul>
+<li>inner|outer|both<br><code>$( &quot;&quot; ).draggable({ snap: &quot;#id&quot;, snapMode: &quot;outer&quot; });</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Draggable Widget允许使用鼠标移动元素。</p>
+</li>
+</ul>
+<pre><code>&lt;div id=&quot;draggable&quot; class=&quot;ui-widget-content&quot;&gt;
+    &lt;p&gt;Drag me around&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    $( &quot;#draggable&quot; ).draggable();
+&lt;/script&gt;
+</code></pre><p>Droppable Widget为可拖拽小部件创建目标。</p>
+<ul>
+<li>droppable()的事件<ul>
+<li>drop：该事件在被允许拖放的元素覆盖时触发。</li>
+</ul>
+</li>
+<li>droppable()的选项<ul>
+<li>accept：指定可拖动的元素可被接受。</li>
+<li>activeClass：被允许拖放的元素覆盖时，改变样式。</li>
+<li>hoverClass：被允许拖放的元素悬停时，改变样式。</li>
+</ul>
+</li>
+</ul>
+<h3 id="jquery-ui-resizeable-缩放效果"><a href="#jQuery-UI-Resizeable-缩放效果" class="headerlink" title="jQuery UI Resizeable 缩放效果"></a>jQuery UI Resizeable 缩放效果</h3><ul>
+<li><p>使用鼠标改变元素的尺寸</p>
+<pre><code>$( &quot;#resizable&quot; ).resizable();
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-selectable-元素选择效果"><a href="#jQuery-UI-selectable-元素选择效果" class="headerlink" title="jQuery UI selectable 元素选择效果"></a>jQuery UI selectable 元素选择效果</h3><ul>
+<li><p>使用鼠标选择单个元素或一组元素</p>
+<pre><code>$( &quot;#selectable&quot; ).selectable();
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-sortable-排序效果"><a href="#jQuery-UI-Sortable-排序效果" class="headerlink" title="jQuery UI Sortable 排序效果"></a>jQuery UI Sortable 排序效果</h3><ul>
+<li><p>使用鼠标调整列表中或者网格中元素的排序</p>
+<pre><code>$( &quot;#sortable&quot; ).sortable();
+</code></pre></li>
+</ul>
+<h2 id="widget-部件"><a href="#Widget-部件" class="headerlink" title="Widget (部件)"></a>Widget (部件)</h2><h3 id="jquery-ui-accordion-折叠面板效果"><a href="#jQuery-UI-Accordion-折叠面板效果" class="headerlink" title="jQuery UI Accordion  折叠面板效果"></a>jQuery UI Accordion  折叠面板效果</h3><ul>
+<li>在一个有限的空间内显示用于呈现信息的可折叠的内容面板。<br>  <code>$( &quot;#accordion&quot; ).accordion();</code><blockquote>
+<p><strong>需要注意的是：</strong></p>
+<ul>
+<li>使用<code>&lt;div&gt;</code>元素作为折叠面板的容器。</li>
+<li>使用<code>&lt;h3&gt;</code>元素作为折叠面板的标题。</li>
+<li>使用<code>&lt;div&gt;</code>元素作为折叠面板的内容。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="jquery-ui-autocomlete-自动检索"><a href="#jQuery-UI-Autocomlete-自动检索" class="headerlink" title="jQuery UI Autocomlete  自动检索"></a>jQuery UI Autocomlete  自动检索</h3><ul>
+<li>根据用户输入值进行搜索和过滤，让用户快速找到并从预设值列表中选择。<br>  <code>$( &quot;#autocomlete&quot; ).autocomlete();</code></li>
+</ul>
+<h3 id="jquery-ui-button-按钮效果"><a href="#jQuery-UI-Button-按钮效果" class="headerlink" title="jQuery UI Button  按钮效果"></a>jQuery UI Button  按钮效果</h3><ul>
+<li>在一个有限的空间内显示用于呈现信息的可折叠的内容面板。<br>  <code>$( &quot;#button&quot; ).button();</code></li>
+</ul>
+<h3 id="jquery-ui-datepicker-日历选择器"><a href="#jQuery-UI-Datepicker-日历选择器" class="headerlink" title="jQuery UI  Datepicker 日历选择器"></a>jQuery UI  Datepicker 日历选择器</h3><ul>
+<li><p>Datepicker Widget从弹出框或在线日历选择一个日期。</p>
+<pre><code>&lt;p&gt;Date: &lt;input type=&quot;text&quot; id=&quot;datepicker&quot;&gt;&lt;/p&gt;
+&lt;script&gt;
+    $( &quot;#datepicker&quot; ).datepicker();
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-dialog对话框"><a href="#jQuery-UI-Dialog对话框" class="headerlink" title="jQuery UI  Dialog对话框"></a>jQuery UI  Dialog对话框</h3><p>Dialog Widget在一个交互覆盖层中打开内容。</p>
+<ul>
+<li>基本对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog&quot; title=&quot;Basic dialog&quot;&gt;
+    &lt;p&gt;This is the default dialog which is useful for displaying information. 
+        The dialog window can be moved, resized and closed with the &apos;x&apos; icon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $( &quot;#dialog&quot; ).dialog();
+&lt;/script&gt;
+</code></pre><ul>
+<li>模式对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog-modal&quot; title=&quot;Basic modal dialog&quot;&gt;
+    &lt;p&gt;Adding the modal overlay screen makes the dialog look 
+        more prominent because it dims out the page content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $( &quot;#dialog-modal&quot; ).dialog({
+        modal: true
+    });
+&lt;/script&gt;
+</code></pre><ul>
+<li>操作对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog&quot; title=&quot;Basic dialog&quot;&gt;
+    &lt;p&gt;This is an animated dialog which is useful for displaying information.
+    The dialog window can be moved, resized and closed with the &apos;x&apos; icon.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;button id=&quot;opener&quot;&gt;Open Dialog&lt;/button&gt;
+
+&lt;script&gt;
+    $( &quot;#dialog&quot; ).dialog({
+        autoOpen: false,
+        show: {
+            effect: &quot;blind&quot;,
+            duration: 1000
+        },
+        hide: {
+            effect: &quot;explode&quot;,
+            duration: 1000
+        },
+        buttons : {
+            &quot;OK&quot;: function() {
+                $( this ).dialog( &quot;close&quot; );
+            },
+            Cancel: function() {
+                $( this ).dialog( &quot;close&quot; );
+            }
+        }
+    });
+
+    $( &quot;#opener&quot; ).button().click(function() {
+        $( &quot;#dialog&quot; ).dialog( &quot;open&quot; );
+    });
+&lt;/script&gt;
+</code></pre><h3 id="jquery-ui-tabs页签"><a href="#jQuery-UI-Tabs页签" class="headerlink" title="jQuery UI Tabs页签"></a>jQuery UI Tabs页签</h3><ul>
+<li>Tabs Widget是一种多面板的单内容区，每个面板与列表中的标题相关。<br>  <code>$( &quot;#tabs&quot; ).tabs();</code></li>
+</ul>
+<h3 id="tooltip-widget"><a href="#Tooltip-Widget" class="headerlink" title="Tooltip Widget"></a>Tooltip Widget</h3><ul>
+<li><p>Tooltip Widget可自定义的、可主题化的工具提示框，替代原生的工具提示框。</p>
+<pre><code>&lt;p&gt;
+    &lt;label for=&quot;age&quot;&gt;Your age:&lt;/label&gt;
+    &lt;input id=&quot;age&quot; title=&quot;We ask for your purposes.&quot;&gt;
+&lt;/p&gt;
+&lt;script&gt;
+    $( document ).tooltip();
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-menu-菜单"><a href="#jQuery-UI-Menu-菜单" class="headerlink" title="jQuery UI  Menu 菜单"></a>jQuery UI  Menu 菜单</h3><ul>
+<li>带有鼠标和键盘交互的用于导航的可主题化菜单<br>  <code>$( &quot;#menu&quot; ).menu();</code></li>
+</ul>
+<h3 id="jquery-ui-progressbar-进度条"><a href="#jQuery-UI-Progressbar-进度条" class="headerlink" title="jQuery UI  Progressbar 进度条"></a>jQuery UI  Progressbar 进度条</h3><ul>
+<li>显示一个确定的或不确定的进程状态<br>  <code>$( &quot;#progressbar&quot; ).progressbar({});</code></li>
+</ul>
+<h3 id="jquery-ui-slider-滑块"><a href="#jQuery-UI-Slider-滑块" class="headerlink" title="jQuery UI  Slider  滑块"></a>jQuery UI  Slider  滑块</h3><ul>
+<li>滑槽滑块<br>  <code>$( &quot;#slider&quot; ).slider();</code></li>
+</ul>
+<h3 id="jquery-ui-tab键提示信息"><a href="#jQuery-UI-tab键提示信息" class="headerlink" title="jQuery UI tab键提示信息"></a>jQuery UI tab键提示信息</h3><ul>
+<li>悬停在链接上，或者使用 tab 键循环切换聚焦在每个元素上。<br>  <code>$( document ).tooltip();</code></li>
+</ul>
+<h3 id="jquery-ui-spinner-旋转器"><a href="#jQuery-UI-Spinner-旋转器" class="headerlink" title="jQuery UI  Spinner 旋转器"></a>jQuery UI  Spinner 旋转器</h3><ul>
+<li>通过向上/向下按钮和箭头键处理，为输入数值增强文本输入功能。</li>
+<li><code>$( &#39;#spinner&#39;).spinner();</code></li>
+</ul>
+<h3 id="menu-widget"><a href="#Menu-Widget" class="headerlink" title="Menu Widget"></a>Menu Widget</h3><p>Menu Widget带有鼠标和键盘交互的用于导航的可主题化菜单。</p>
+<ul>
+<li>禁用页面中默认的鼠标右键功能。</li>
+</ul>
+<pre><code>$(document).contextmenu(function (event) {
+    event.preventDefault();
+});
+</code></pre><ul>
+<li>自定义鼠标右键菜单。</li>
+</ul>
+<pre><code>$(document).mousedown(function (event) {
+    if(event.button == 2){
+        $( &quot;#menu&quot;).removeAttr(&quot;style&quot;).menu().position({
+            my: &quot;left top&quot;,
+            at: &quot;left top&quot;,
+            of : event,
+            collision: &quot;fit&quot;
+        });
+    }
+});
+</code></pre><p><img src="http://i.imgur.com/zhmd2OO.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" <i class="fa fa-tag"></i> jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/04/jQuery-一/" rel="next" title="jQuery(一)">
+                <i class="fa fa-chevron-left"></i> jQuery(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Mr.王" />
+          <p class="site-author-name" itemprop="name">Mr.王</p>
+           
+              <p class="site-description motion-element" itemprop="description">雷霆雨露,俱是天恩。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+			<a title="�ղص���ǩ��ż��Highһ��^_^" rel="alternate" class="mw-harlem_shake_slow wobble shake" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+ 
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+ 
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+ 
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+ 
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+ 
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+ 
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+ 
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+ 
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+ 
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+ 
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+ 
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+ 
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+ 
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()'><i class="fa fa-music"></i> High</a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/whalesfall" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery中的事件"><span class="nav-number">1.</span> <span class="nav-text">jQuery中的事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#页面加载"><span class="nav-number">1.1.</span> <span class="nav-text">页面加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件绑定"><span class="nav-number">1.2.</span> <span class="nav-text">事件绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单事件绑定"><span class="nav-number">1.2.1.</span> <span class="nav-text">单事件绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多事件绑定"><span class="nav-number">1.2.2.</span> <span class="nav-text">多事件绑定</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟操作"><span class="nav-number">1.3.</span> <span class="nav-text">模拟操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件冒泡"><span class="nav-number">1.4.</span> <span class="nav-text">事件冒泡</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事件冒泡"><span class="nav-number">1.4.1.</span> <span class="nav-text">什么是事件冒泡</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止事件冒泡"><span class="nav-number">1.4.2.</span> <span class="nav-text">阻止事件冒泡</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件对象"><span class="nav-number">1.5.</span> <span class="nav-text">事件对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事件对象"><span class="nav-number">1.5.1.</span> <span class="nav-text">什么是事件对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件对象的常用属性"><span class="nav-number">1.5.2.</span> <span class="nav-text">事件对象的常用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止默认行为"><span class="nav-number">1.5.3.</span> <span class="nav-text">阻止默认行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery类数组操作"><span class="nav-number">2.</span> <span class="nav-text">jQuery类数组操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组与类数组对象的区别"><span class="nav-number">2.1.</span> <span class="nav-text">数组与类数组对象的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类数组的操作"><span class="nav-number">2.2.</span> <span class="nav-text">类数组的操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery插件"><span class="nav-number">3.</span> <span class="nav-text">jQuery插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jquery-日期插件"><span class="nav-number">3.1.</span> <span class="nav-text">jQuery 日期插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#laydate-api选项"><span class="nav-number">3.1.1.</span> <span class="nav-text">layDate API选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单验证插件"><span class="nav-number">3.2.</span> <span class="nav-text">表单验证插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用验证插件"><span class="nav-number">3.2.1.</span> <span class="nav-text">常用验证插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jqueryvalidator插件"><span class="nav-number">3.2.2.</span> <span class="nav-text">jQuery.validator插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#validation基本使用"><span class="nav-number">3.2.3.</span> <span class="nav-text">validation基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#validate验证方法的选项"><span class="nav-number">3.2.4.</span> <span class="nav-text">validate()验证方法的选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#validation自定义验证"><span class="nav-number">3.2.5.</span> <span class="nav-text">validation自定义验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义验证方法"><span class="nav-number">3.3.</span> <span class="nav-text">自定义验证方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jquery-ui"><span class="nav-number">4.</span> <span class="nav-text">jQuery  UI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#effect效果"><span class="nav-number">4.2.</span> <span class="nav-text">Effect（效果）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#animate-方法"><span class="nav-number">4.2.1.</span> <span class="nav-text">animate( )方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#effect-方法"><span class="nav-number">4.2.2.</span> <span class="nav-text">effect( )方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#interactions交互组件"><span class="nav-number">4.3.</span> <span class="nav-text">Interactions（交互组件）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#draggable-widget"><span class="nav-number">4.3.1.</span> <span class="nav-text">Draggable Widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-resizeable-缩放效果"><span class="nav-number">4.3.2.</span> <span class="nav-text">jQuery UI Resizeable 缩放效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-selectable-元素选择效果"><span class="nav-number">4.3.3.</span> <span class="nav-text">jQuery UI selectable 元素选择效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-sortable-排序效果"><span class="nav-number">4.3.4.</span> <span class="nav-text">jQuery UI Sortable 排序效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#widget-部件"><span class="nav-number">4.4.</span> <span class="nav-text">Widget (部件)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-accordion-折叠面板效果"><span class="nav-number">4.4.1.</span> <span class="nav-text">jQuery UI Accordion  折叠面板效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-autocomlete-自动检索"><span class="nav-number">4.4.2.</span> <span class="nav-text">jQuery UI Autocomlete  自动检索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-button-按钮效果"><span class="nav-number">4.4.3.</span> <span class="nav-text">jQuery UI Button  按钮效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-datepicker-日历选择器"><span class="nav-number">4.4.4.</span> <span class="nav-text">jQuery UI  Datepicker 日历选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-dialog对话框"><span class="nav-number">4.4.5.</span> <span class="nav-text">jQuery UI  Dialog对话框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-tabs页签"><span class="nav-number">4.4.6.</span> <span class="nav-text">jQuery UI Tabs页签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tooltip-widget"><span class="nav-number">4.4.7.</span> <span class="nav-text">Tooltip Widget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-menu-菜单"><span class="nav-number">4.4.8.</span> <span class="nav-text">jQuery UI  Menu 菜单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-progressbar-进度条"><span class="nav-number">4.4.9.</span> <span class="nav-text">jQuery UI  Progressbar 进度条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-slider-滑块"><span class="nav-number">4.4.10.</span> <span class="nav-text">jQuery UI  Slider  滑块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-tab键提示信息"><span class="nav-number">4.4.11.</span> <span class="nav-text">jQuery UI tab键提示信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery-ui-spinner-旋转器"><span class="nav-number">4.4.12.</span> <span class="nav-text">jQuery UI  Spinner 旋转器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#menu-widget"><span class="nav-number">4.4.13.</span> <span class="nav-text">Menu Widget</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.王</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

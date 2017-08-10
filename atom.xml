@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-02T14:25:22.286Z</updated>
+  <updated>2017-08-10T09:05:07.135Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,1141 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>jQuery(二)</title>
+    <link href="http://yoursite.com/2017/08/08/jQuery-%E4%BA%8C/"/>
+    <id>http://yoursite.com/2017/08/08/jQuery-二/</id>
+    <published>2017-08-08T08:02:30.000Z</published>
+    <updated>2017-08-10T09:05:07.135Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jquery中的事件"><a href="#jQuery中的事件" class="headerlink" title="jQuery中的事件"></a>jQuery中的事件</h1><h2 id="页面加载"><a href="#页面加载" class="headerlink" title="页面加载"></a>页面加载</h2><p>原生DOM中的事件具有页面加载的内容onload事件，在jQuery中同样提供了对应的内容ready()函数。</p>
+<p>ready与onload之间的区别：</p>
+<ul>
+<li>onload:<ul>
+<li>没有简写方式</li>
+<li>当HTML页面所有内容加载完毕后才执行onload</li>
+<li>一个HTML页面只能编写一个onload</li>
+</ul>
+</li>
+<li>ready:<ul>
+<li>具有简写方式</li>
+<li>当DOM节点加载完毕后就执行ready</li>
+<li>一个HTML页面允许同时编写多个ready</li>
+</ul>
+</li>
+</ul>
+<p>ready()的编写方式：</p>
+<ul>
+<li>$(document).ready(function(){});</li>
+<li>$().ready(function(){});</li>
+<li>$(function(){});</li>
+</ul>
+<h2 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h2><p>jQuery中提供了事件绑定与解绑机制，类似于原生DOM中的addEventListener()方法。</p>
+<h3 id="单事件绑定"><a href="#单事件绑定" class="headerlink" title="单事件绑定"></a>单事件绑定</h3><p>单事件绑定就是指为指定元素绑定一个指定的事件，例如click、change等。</p>
+<h3 id="多事件绑定"><a href="#多事件绑定" class="headerlink" title="多事件绑定"></a>多事件绑定</h3><p>多事件绑定就是为指定元素同时绑定多个指定的事件，例如同时绑定mouseover和mouseout事件等。</p>
+<h2 id="模拟操作"><a href="#模拟操作" class="headerlink" title="模拟操作"></a>模拟操作</h2><p>模拟操作就是指通过程序模拟用户在页面中的操作，比如用户点击某个按钮的事件完成一个效果，jQuery中可以通过该方法模拟用户点击按钮事件。也就是说，不需要用户的操作行为，而是我们通过程序来模拟用户操作。</p>
+<pre><code>$(&apos;#btn&apos;).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数1&lt;/p&gt;&quot;);
+}).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数2&lt;/p&gt;&quot;);
+}).bind(&quot;click&quot;, function(){
+    $(&apos;#test&apos;).append(&quot;&lt;p&gt;我的绑定函数3&lt;/p&gt;&quot;);
+});
+$(&apos;#btn&apos;).trigger(&quot;click&quot;);
+</code></pre><h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><h3 id="什么是事件冒泡"><a href="#什么是事件冒泡" class="headerlink" title="什么是事件冒泡"></a>什么是事件冒泡</h3><p>在一个对象上触发某类事件（比如单击onclick事件），如果此对象定义了此事件的处理程序，那么此事件就会调用这个处理程序，如果没有定义此事件处理程序或者事件返回true，那么这个事件会向这个对象的父级对象传播，从里到外，直至它被处理（父级对象所有同类事件都将被激活），或者它到达了对象层次的最顶层，即document对象（有些浏览器是window）。</p>
+<h3 id="阻止事件冒泡"><a href="#阻止事件冒泡" class="headerlink" title="阻止事件冒泡"></a>阻止事件冒泡</h3><ul>
+<li>DOM标准：event.stopPropagation()</li>
+<li>IE: event.cancelBubble=true</li>
+</ul>
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><h3 id="什么是事件对象"><a href="#什么是事件对象" class="headerlink" title="什么是事件对象"></a>什么是事件对象</h3><p>事件是一种JavaScript结构，它会在元素获得处理事件的机会时被传递给被调用的事件处理程序。这个对象中包含与事件相关的信息，也提供了可以影响事件在DOM中传递进程的一些方法。</p>
+<h3 id="事件对象的常用属性"><a href="#事件对象的常用属性" class="headerlink" title="事件对象的常用属性"></a>事件对象的常用属性</h3><ul>
+<li>srcElement/target : 事件源对象</li>
+<li>eventPhase : 事件所处的传播阶段</li>
+<li>clientX/offsetX/pageX/screenX/x：事件发生的X坐标</li>
+<li>clientY/offsetY/pageY/screenY/y：事件发生的Y坐标</li>
+<li>which/keyCode/charCode : 键盘事件中按下的按键</li>
+<li>button：鼠标哪个按键被按下了</li>
+<li>cancelBubble ：是否取消事件冒泡</li>
+<li>returnValue : 是否阻止事件默认行为</li>
+</ul>
+<h3 id="阻止默认行为"><a href="#阻止默认行为" class="headerlink" title="阻止默认行为"></a>阻止默认行为</h3><p>所谓默认行为，就是指页面中默认具有的一些行为，例如表单提交、连接跳转等效果。</p>
+<ul>
+<li><code>event.preventDefault();</code></li>
+<li><code>return false;</code></li>
+</ul>
+<hr>
+<h1 id="jquery类数组操作"><a href="#jQuery类数组操作" class="headerlink" title="jQuery类数组操作"></a>jQuery类数组操作</h1><p>类数组对象就是结构上类似于数组的对象，该对象具备数组的一些特性属性或方法，同时具有自己独特的一些属性或方法。</p>
+<h2 id="数组与类数组对象的区别"><a href="#数组与类数组对象的区别" class="headerlink" title="数组与类数组对象的区别"></a>数组与类数组对象的区别</h2><ul>
+<li>数组的类型是Array</li>
+<li>类数组对象的类型是Object</li>
+</ul>
+<h2 id="类数组的操作"><a href="#类数组的操作" class="headerlink" title="类数组的操作"></a>类数组的操作</h2><ul>
+<li>length属性：获取指定元素的个数。</li>
+<li>eq(index)：将下标等于index的DOM对象取出来。</li>
+<li>get(index)：返回一个DOM对象组成的数组。</li>
+<li>index（obj）：返回DOM或jQuery对象在类数组中的下标。</li>
+<li><p>遍历方法：</p>
+<ul>
+<li><p>$(selector).each(callback)</p>
+<ul>
+<li><p>callback：回调函数，function(index,domEle){}</p>
+<ul>
+<li>index：遍历过程中的索引值</li>
+<li><p>domEle：遍历后得到的DOM对象</p>
+<pre><code>$.each($(&quot;input&quot;),function(index,domEle){
+    console.log(domEle.value);
+    console.log($(domEle).val());
+    console.log(this.value);
+    console.log($(this).val());
+});
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>$.makeArray(obj) 将类数组对象转换为数组对象</p>
+</li>
+<li><p>$.inArray(value, array)  查找元素在数组中的位置<br>确定第一个参数在数组中的位置，从0开始(如果没有找到则返回 -1 )</p>
+</li>
+<li><p>$.toArray() 把jQuery集合中所有DOM元素恢复成一个数组。</p>
+</li>
+</ul>
+<h1 id="jquery插件"><a href="#jQuery插件" class="headerlink" title="jQuery插件"></a>jQuery插件</h1><h2 id="jquery-日期插件"><a href="#jQuery-日期插件" class="headerlink" title="jQuery 日期插件"></a>jQuery 日期插件</h2><p>layDate日期插件致力于成为全球最用心的web日期支撑，为国内外所有从事web应用开发的同仁提供力所能及的动力。</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;01_laydate插件的基本使用&lt;/title&gt;
+    &lt;script src=&quot;laydate/laydate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input placeholder=&quot;请输入日期&quot; class=&quot;laydate-icon&quot; onclick=&quot;laydate()&quot;&gt;
+    &lt;br&gt;
+    &lt;input placeholder=&quot;请输入日期&quot; id=&quot;hello1&quot;&gt;
+    &lt;span class=&quot;laydate-icon&quot; onclick=&quot;laydate({elem: &apos;#hello1&apos;});&quot;&gt;&lt;/span&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h3 id="laydate-api选项"><a href="#layDate-API选项" class="headerlink" title="layDate API选项"></a>layDate API选项</h3><ul>
+<li>elem: ‘#id’, //需显示日期的元素选择器</li>
+<li>event: ‘click’, //触发事件</li>
+<li>format: ‘YYYY-MM-DD hh!’, //日期格式</li>
+<li>istime: false, //是否开启时间选择</li>
+<li>isclear: true, //是否显示清空</li>
+<li>istoday: true, //是否显示今天</li>
+<li>issure: true, 是否显示确认</li>
+<li>festival: true //是否显示节日</li>
+<li>min: <code>1900-01-01 00:00:00</code>, //最小日期</li>
+<li>max: <code>2099-12-31 23:59:59</code>, //最大日期</li>
+<li>start: <code>2014-6-15 23:00:00</code>, //开始日期</li>
+<li>fixed: false, //是否固定在可视区域</li>
+<li>zIndex: 99999999, //css z-index</li>
+<li>choose: function(dates){} //选择好日期的回调</li>
+</ul>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;02_laydate插件的高级使用&lt;/title&gt;
+    &lt;script src=&quot;jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;laydate/laydate.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input id=&quot;mydate&quot; placeholder=&quot;请输入日期&quot; class=&quot;laydate-icon&quot;&gt;
+    &lt;script&gt;
+        laydate({
+            elem : &quot;#mydate&quot;,
+            event : &quot;focus&quot;,
+            istime : true,
+            isclear : false,
+            istoday : false,
+            issure : false
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="表单验证插件"><a href="#表单验证插件" class="headerlink" title="表单验证插件"></a>表单验证插件</h2><p>表单验证插件主要是针对表单元素的值进行验证，并给出响应的图形以及文字提示。</p>
+<h3 id="常用验证插件"><a href="#常用验证插件" class="headerlink" title="常用验证插件"></a>常用验证插件</h3><ul>
+<li>formValidator</li>
+<li>jQuery.validator</li>
+<li>easyForm</li>
+<li>validate.js</li>
+</ul>
+<h3 id="jqueryvalidator插件"><a href="#jQuery-validator插件" class="headerlink" title="jQuery.validator插件"></a>jQuery.validator插件</h3><p>该插件提供用户方便地实现表单验证，同时还提供大量的定制选项。<br>官方地址：<a href="http://jqueryvalidation.org/" target="_blank" rel="external">http://jqueryvalidation.org/</a></p>
+<ol>
+<li>引入必要文件<ul>
+<li>引入jQuery库文件</li>
+<li>引入插件文件 dist/jquery.validate.js</li>
+<li>引入国际化文件 (提示语言文件)<br>dist–localization–message_zh.js 中文提示语言</li>
+</ul>
+</li>
+<li>在HTML页面定义表单<ul>
+<li>表单的元素使用HTML5提供的新表单验证功能</li>
+<li>required 表示必填项</li>
+</ul>
+</li>
+<li>在JS逻辑中填写<ul>
+<li>通过表单调用validate()核心方法<br>$().validate();</li>
+</ul>
+</li>
+</ol>
+<h3 id="validation基本使用"><a href="#validation基本使用" class="headerlink" title="validation基本使用"></a>validation基本使用</h3><pre><code>&lt;div id=&quot;main&quot;&gt;
+    &lt;p&gt;Take a look at the source to see with metadata.&lt;/p&gt;
+    &lt;!-- Custom rules and messages via data- attributes --&gt;
+    &lt;form class=&quot;cmxform&quot; id=&quot;commentForm&quot; method=&quot;post&quot; action=&quot;&quot;&gt;
+        &lt;fieldset&gt;
+            &lt;legend&gt;Please enter your email address&lt;/legend&gt;
+            &lt;p&gt;
+                &lt;label for=&quot;cemail&quot;&gt;E-Mail *&lt;/label&gt;
+                &lt;input id=&quot;cemail&quot; name=&quot;email&quot; data-rule-required=&quot;true&quot; 
+        data-rule-email=&quot;true&quot; 
+        data-msg-required=&quot;Please enter your email address&quot; 
+        data-msg-email=&quot;Please enter a valid email address&quot;&gt;
+            &lt;/p&gt;
+            &lt;p&gt;
+                &lt;input class=&quot;submit&quot; type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+            &lt;/p&gt;
+        &lt;/fieldset&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $(document).ready(function() {
+        $(&quot;#commentForm&quot;).validate();
+    });
+&lt;/script&gt;
+</code></pre><h3 id="validate验证方法的选项"><a href="#validate-验证方法的选项" class="headerlink" title="validate()验证方法的选项"></a>validate()验证方法的选项</h3><table><thead><tr><th>选项名称</th><th>描述说明</th></tr></thead><tbody><tr><td>debug</td><td>设置是否为调试模式，如果为调试模式表单不会被提交。</td></tr><tr><td>submitHandler</td><td>表单提交时的回调函数，一般用于提交当前表单。</td></tr><tr><td>rules</td><td>设置表单元素的验证规则，格式为key:value。</td></tr><tr><td>messages</td><td>设置表单元素验证不通过时的错误提示信息。</td></tr><tr><td>errorClass</td><td>自定义错误提示信息的样式。</td></tr><tr><td>ignore</td><td>设置哪些表单元素不进行验证。</td></tr></tbody></table>
+
+<h3 id="validation自定义验证"><a href="#validation自定义验证" class="headerlink" title="validation自定义验证"></a>validation自定义验证</h3><ul>
+<li>$().validate(options)</li>
+<li><p>rules  自定义的验证规则</p>
+<ul>
+<li>key 要验证的表单元素的name属性值</li>
+<li><p>value 指定使用的验证规则名称</p>
+<pre><code>rules : {
+   email:true, //输入正确的email格式
+   number:true, //输入合法的数字
+}
+</code></pre></li>
+</ul>
+</li>
+<li><p>equalTo : “相同内容的id”</p>
+</li>
+<li><p>messages 自定义的错误提示</p>
+<pre><code>messages : {
+    key : &apos; value &apos;
+}
+</code></pre></li>
+<li><p>自定义错误提示的显示位置(单选和多选框)</p>
+<ul>
+<li>自定义的错误提示默认出现在第一个被验证的元素后面</li>
+<li>自定义的错误提示应该出现在一组验证元素的后面</li>
+<li><p>自定义了用于显示错误提示信息的标签</p>
+<p>  <code>&lt;label for=&quot;&quot; class=&quot;error&quot;&gt;&lt;/label&gt;</code></p>
+</li>
+<li><p>class 插件底层的错误提示信息的样式</p>
+</li>
+<li>for 告知插件当前错误提示信息与哪个指定的验证元素相关</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/c3sHFLa.png" alt=""></p>
+<h2 id="自定义验证方法"><a href="#自定义验证方法" class="headerlink" title="自定义验证方法"></a>自定义验证方法</h2><p>jQuery.validator.addMethod( name, method [, message ] )方法</p>
+<ul>
+<li>name：设置验证方法的名称。</li>
+<li>method：回调函数，function(value,element,param){}<ul>
+<li>value：元素的值</li>
+<li>element：元素本身</li>
+<li>param：参数</li>
+</ul>
+</li>
+<li>message：设置验证不通过的错误提示信息。</li>
+</ul>
+<h1 id="jquery-ui"><a href="#jQuery-UI" class="headerlink" title="jQuery  UI"></a>jQuery  UI</h1><p>jQuery UI能做的事可谓是包罗万象。实际上，jQuery UI在某种意义上并不是插件，而是一个完整的插件库。</p>
+<p>jQuery UI中主要包含以下几个功能：</p>
+<ul>
+<li>Effect（效果）</li>
+<li>Interactions（交互组件）</li>
+<li>Widget（部件）</li>
+<li>此外，还为jQuery和核心动画提供了很多高级效果。</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>引入ui – jquery-ui.js</li>
+<li>引入themes – base – jquery-ui.css / imagse(同级目录)</li>
+<li>引入demos – demos.css</li>
+</ul>
+<h2 id="effect效果"><a href="#Effect（效果）" class="headerlink" title="Effect（效果）"></a>Effect（效果）</h2><h3 id="animate-方法"><a href="#animate-方法" class="headerlink" title="animate( )方法"></a>animate( )方法</h3><p>文档在引入核心效果文件的情况下，扩展的.animate()方法可接受另外一些样式属性。</p>
+<p>扩展后animate方法接受以下属性：</p>
+<ul>
+<li>backgroundColor</li>
+<li>borderBottomColor</li>
+<li>borderLeftColor</li>
+<li>borderRightColor</li>
+<li>borderTopColor</li>
+<li>Color</li>
+<li>outlineColor</li>
+</ul>
+<pre><code>var state = true;
+$( &quot;#button&quot; ).click(function() {
+    if ( state ) {
+        $( &quot;#effect&quot; ).animate({
+            backgroundColor: &quot;#aa0000&quot;,
+            color: &quot;#fff&quot;,
+            width: 500
+        }, 1000 );
+    } else {
+        $( &quot;#effect&quot; ).animate({
+            backgroundColor: &quot;#fff&quot;,
+            color: &quot;#000&quot;,
+            width: 240
+        }, 1000 );
+    }
+    state = !state;
+});
+</code></pre><h3 id="effect-方法"><a href="#effect-方法" class="headerlink" title="effect( )方法"></a>effect( )方法</h3><ul>
+<li><p>扩展后animate()方法接受以下属性：</p>
+<p>  backgroundColor<br>  borderBottomColor<br>  borderLeftColor<br>  borderRightColor<br>  borderTopColor<br>  Color<br>  outlineColor</p>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/nOxK2i0.png" alt=""></p>
+<h2 id="interactions交互组件"><a href="#Interactions（交互组件）" class="headerlink" title="Interactions（交互组件）"></a>Interactions（交互组件）</h2><h3 id="draggable-widget"><a href="#Draggable-Widget" class="headerlink" title="Draggable Widget"></a>Draggable Widget</h3><p> $( “#draggable” ).draggable();</p>
+<ul>
+<li>start：当拖动开始时触发。</li>
+<li>drag：当鼠标在拖动过程中移动时触发。</li>
+<li><p>stop：当拖动停止时触发。</p>
+<p>draggable()的选项</p>
+</li>
+<li>约束运动<ul>
+<li>axis：设置只能在x轴或y轴方向拖动。</li>
+<li>containment：设置在某个区域内拖动。</li>
+</ul>
+</li>
+<li><p>光标样式</p>
+<ul>
+<li>cursor：设置拖动时鼠标的样式。</li>
+<li>cursorAt：设置鼠标的相对定位。</li>
+<li>handle：设置指定元素触发鼠标按下事件才能拖动。</li>
+<li>cancel：防止在指定元素上拖动。</li>
+<li>revert：当停止拖动时，元素是否被重置到初始位置。</li>
+<li>snap：拖动元素是否吸附在其他元素。</li>
+<li>snapMode：设置拖动元素吸附指定元素的哪个边缘。</li>
+<li>snap设置为true时该选项有效。<ul>
+<li>inner|outer|both<br><code>$( &quot;&quot; ).draggable({ snap: &quot;#id&quot;, snapMode: &quot;outer&quot; });</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Draggable Widget允许使用鼠标移动元素。</p>
+</li>
+</ul>
+<pre><code>&lt;div id=&quot;draggable&quot; class=&quot;ui-widget-content&quot;&gt;
+    &lt;p&gt;Drag me around&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+    $( &quot;#draggable&quot; ).draggable();
+&lt;/script&gt;
+</code></pre><p>Droppable Widget为可拖拽小部件创建目标。</p>
+<ul>
+<li>droppable()的事件<ul>
+<li>drop：该事件在被允许拖放的元素覆盖时触发。</li>
+</ul>
+</li>
+<li>droppable()的选项<ul>
+<li>accept：指定可拖动的元素可被接受。</li>
+<li>activeClass：被允许拖放的元素覆盖时，改变样式。</li>
+<li>hoverClass：被允许拖放的元素悬停时，改变样式。</li>
+</ul>
+</li>
+</ul>
+<h3 id="jquery-ui-resizeable-缩放效果"><a href="#jQuery-UI-Resizeable-缩放效果" class="headerlink" title="jQuery UI Resizeable 缩放效果"></a>jQuery UI Resizeable 缩放效果</h3><ul>
+<li><p>使用鼠标改变元素的尺寸</p>
+<pre><code>$( &quot;#resizable&quot; ).resizable();
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-selectable-元素选择效果"><a href="#jQuery-UI-selectable-元素选择效果" class="headerlink" title="jQuery UI selectable 元素选择效果"></a>jQuery UI selectable 元素选择效果</h3><ul>
+<li><p>使用鼠标选择单个元素或一组元素</p>
+<pre><code>$( &quot;#selectable&quot; ).selectable();
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-sortable-排序效果"><a href="#jQuery-UI-Sortable-排序效果" class="headerlink" title="jQuery UI Sortable 排序效果"></a>jQuery UI Sortable 排序效果</h3><ul>
+<li><p>使用鼠标调整列表中或者网格中元素的排序</p>
+<pre><code>$( &quot;#sortable&quot; ).sortable();
+</code></pre></li>
+</ul>
+<h2 id="widget-部件"><a href="#Widget-部件" class="headerlink" title="Widget (部件)"></a>Widget (部件)</h2><h3 id="jquery-ui-accordion-折叠面板效果"><a href="#jQuery-UI-Accordion-折叠面板效果" class="headerlink" title="jQuery UI Accordion  折叠面板效果"></a>jQuery UI Accordion  折叠面板效果</h3><ul>
+<li>在一个有限的空间内显示用于呈现信息的可折叠的内容面板。<br>  <code>$( &quot;#accordion&quot; ).accordion();</code><blockquote>
+<p><strong>需要注意的是：</strong></p>
+<ul>
+<li>使用<code>&lt;div&gt;</code>元素作为折叠面板的容器。</li>
+<li>使用<code>&lt;h3&gt;</code>元素作为折叠面板的标题。</li>
+<li>使用<code>&lt;div&gt;</code>元素作为折叠面板的内容。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="jquery-ui-autocomlete-自动检索"><a href="#jQuery-UI-Autocomlete-自动检索" class="headerlink" title="jQuery UI Autocomlete  自动检索"></a>jQuery UI Autocomlete  自动检索</h3><ul>
+<li>根据用户输入值进行搜索和过滤，让用户快速找到并从预设值列表中选择。<br>  <code>$( &quot;#autocomlete&quot; ).autocomlete();</code></li>
+</ul>
+<h3 id="jquery-ui-button-按钮效果"><a href="#jQuery-UI-Button-按钮效果" class="headerlink" title="jQuery UI Button  按钮效果"></a>jQuery UI Button  按钮效果</h3><ul>
+<li>在一个有限的空间内显示用于呈现信息的可折叠的内容面板。<br>  <code>$( &quot;#button&quot; ).button();</code></li>
+</ul>
+<h3 id="jquery-ui-datepicker-日历选择器"><a href="#jQuery-UI-Datepicker-日历选择器" class="headerlink" title="jQuery UI  Datepicker 日历选择器"></a>jQuery UI  Datepicker 日历选择器</h3><ul>
+<li><p>Datepicker Widget从弹出框或在线日历选择一个日期。</p>
+<pre><code>&lt;p&gt;Date: &lt;input type=&quot;text&quot; id=&quot;datepicker&quot;&gt;&lt;/p&gt;
+&lt;script&gt;
+    $( &quot;#datepicker&quot; ).datepicker();
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-dialog对话框"><a href="#jQuery-UI-Dialog对话框" class="headerlink" title="jQuery UI  Dialog对话框"></a>jQuery UI  Dialog对话框</h3><p>Dialog Widget在一个交互覆盖层中打开内容。</p>
+<ul>
+<li>基本对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog&quot; title=&quot;Basic dialog&quot;&gt;
+    &lt;p&gt;This is the default dialog which is useful for displaying information. 
+        The dialog window can be moved, resized and closed with the &apos;x&apos; icon.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $( &quot;#dialog&quot; ).dialog();
+&lt;/script&gt;
+</code></pre><ul>
+<li>模式对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog-modal&quot; title=&quot;Basic modal dialog&quot;&gt;
+    &lt;p&gt;Adding the modal overlay screen makes the dialog look 
+        more prominent because it dims out the page content.&lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $( &quot;#dialog-modal&quot; ).dialog({
+        modal: true
+    });
+&lt;/script&gt;
+</code></pre><ul>
+<li>操作对话框示例</li>
+</ul>
+<pre><code>&lt;div id=&quot;dialog&quot; title=&quot;Basic dialog&quot;&gt;
+    &lt;p&gt;This is an animated dialog which is useful for displaying information.
+    The dialog window can be moved, resized and closed with the &apos;x&apos; icon.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;button id=&quot;opener&quot;&gt;Open Dialog&lt;/button&gt;
+
+&lt;script&gt;
+    $( &quot;#dialog&quot; ).dialog({
+        autoOpen: false,
+        show: {
+            effect: &quot;blind&quot;,
+            duration: 1000
+        },
+        hide: {
+            effect: &quot;explode&quot;,
+            duration: 1000
+        },
+        buttons : {
+            &quot;OK&quot;: function() {
+                $( this ).dialog( &quot;close&quot; );
+            },
+            Cancel: function() {
+                $( this ).dialog( &quot;close&quot; );
+            }
+        }
+    });
+
+    $( &quot;#opener&quot; ).button().click(function() {
+        $( &quot;#dialog&quot; ).dialog( &quot;open&quot; );
+    });
+&lt;/script&gt;
+</code></pre><h3 id="jquery-ui-tabs页签"><a href="#jQuery-UI-Tabs页签" class="headerlink" title="jQuery UI Tabs页签"></a>jQuery UI Tabs页签</h3><ul>
+<li>Tabs Widget是一种多面板的单内容区，每个面板与列表中的标题相关。<br>  <code>$( &quot;#tabs&quot; ).tabs();</code></li>
+</ul>
+<h3 id="tooltip-widget"><a href="#Tooltip-Widget" class="headerlink" title="Tooltip Widget"></a>Tooltip Widget</h3><ul>
+<li><p>Tooltip Widget可自定义的、可主题化的工具提示框，替代原生的工具提示框。</p>
+<pre><code>&lt;p&gt;
+    &lt;label for=&quot;age&quot;&gt;Your age:&lt;/label&gt;
+    &lt;input id=&quot;age&quot; title=&quot;We ask for your purposes.&quot;&gt;
+&lt;/p&gt;
+&lt;script&gt;
+    $( document ).tooltip();
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<h3 id="jquery-ui-menu-菜单"><a href="#jQuery-UI-Menu-菜单" class="headerlink" title="jQuery UI  Menu 菜单"></a>jQuery UI  Menu 菜单</h3><ul>
+<li>带有鼠标和键盘交互的用于导航的可主题化菜单<br>  <code>$( &quot;#menu&quot; ).menu();</code></li>
+</ul>
+<h3 id="jquery-ui-progressbar-进度条"><a href="#jQuery-UI-Progressbar-进度条" class="headerlink" title="jQuery UI  Progressbar 进度条"></a>jQuery UI  Progressbar 进度条</h3><ul>
+<li>显示一个确定的或不确定的进程状态<br>  <code>$( &quot;#progressbar&quot; ).progressbar({});</code></li>
+</ul>
+<h3 id="jquery-ui-slider-滑块"><a href="#jQuery-UI-Slider-滑块" class="headerlink" title="jQuery UI  Slider  滑块"></a>jQuery UI  Slider  滑块</h3><ul>
+<li>滑槽滑块<br>  <code>$( &quot;#slider&quot; ).slider();</code></li>
+</ul>
+<h3 id="jquery-ui-tab键提示信息"><a href="#jQuery-UI-tab键提示信息" class="headerlink" title="jQuery UI tab键提示信息"></a>jQuery UI tab键提示信息</h3><ul>
+<li>悬停在链接上，或者使用 tab 键循环切换聚焦在每个元素上。<br>  <code>$( document ).tooltip();</code></li>
+</ul>
+<h3 id="jquery-ui-spinner-旋转器"><a href="#jQuery-UI-Spinner-旋转器" class="headerlink" title="jQuery UI  Spinner 旋转器"></a>jQuery UI  Spinner 旋转器</h3><ul>
+<li>通过向上/向下按钮和箭头键处理，为输入数值增强文本输入功能。</li>
+<li><code>$( &#39;#spinner&#39;).spinner();</code></li>
+</ul>
+<h3 id="menu-widget"><a href="#Menu-Widget" class="headerlink" title="Menu Widget"></a>Menu Widget</h3><p>Menu Widget带有鼠标和键盘交互的用于导航的可主题化菜单。</p>
+<ul>
+<li>禁用页面中默认的鼠标右键功能。</li>
+</ul>
+<pre><code>$(document).contextmenu(function (event) {
+    event.preventDefault();
+});
+</code></pre><ul>
+<li>自定义鼠标右键菜单。</li>
+</ul>
+<pre><code>$(document).mousedown(function (event) {
+    if(event.button == 2){
+        $( &quot;#menu&quot;).removeAttr(&quot;style&quot;).menu().position({
+            my: &quot;left top&quot;,
+            at: &quot;left top&quot;,
+            of : event,
+            collision: &quot;fit&quot;
+        });
+    }
+});
+</code></pre><p><img src="http://i.imgur.com/zhmd2OO.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;jquery中的事件&quot;&gt;&lt;a href=&quot;#jQuery中的事件&quot; class=&quot;headerlink&quot; title=&quot;jQuery中的事件&quot;&gt;&lt;/a&gt;jQuery中的事件&lt;/h1&gt;&lt;h2 id=&quot;页面加载&quot;&gt;&lt;a href=&quot;#页面加载&quot; class=&quot;head
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery(一)</title>
+    <link href="http://yoursite.com/2017/08/04/jQuery-%E4%B8%80/"/>
+    <id>http://yoursite.com/2017/08/04/jQuery-一/</id>
+    <published>2017-08-04T07:55:55.000Z</published>
+    <updated>2017-08-10T08:01:57.181Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jquery入门"><a href="#jQuery入门" class="headerlink" title="jQuery入门"></a>jQuery入门</h1><h2 id="javascript类库"><a href="#JavaScript类库" class="headerlink" title="JavaScript类库"></a>JavaScript类库</h2><ul>
+<li><strong>作用：</strong>JavaScript类库的出现，就是为了简化JavaScript的开发。</li>
+<li><strong>内容：</strong>JavaScript类库封装了预定义的对象和函数。</li>
+<li><strong>目的：</strong>帮助开发人员建立有高难度交互的Web 2.0特性的富客户端页面，并且兼容各大浏览器。</li>
+</ul>
+<blockquote>
+<p><strong>扩展内容</strong><br>Web 2.0相关概念：</p>
+<ol>
+<li>Web 1.0：网络 -&gt; 人（单向信息。网络是信息提供者，单向的提供和单一理解）</li>
+<li>Web 2.0：人 -&gt; 人（以网络为沟通渠道进行人与人沟通。网络是平台，用户提供信息，通过网络，其他用户获取信息）</li>
+<li>Web 3.0：人 -&gt; 网络 -&gt; 人（人与网络之间的双向沟通。网络成为用户需求理解者和提供者）</li>
+</ol>
+<p>富客户端与瘦客户端：</p>
+<ol>
+<li>富客户端：（Rich Internet Applications，RIA）利用具有很强交互性的富客户端技术来为用户提供一个更高和更全方位的网络体验。</li>
+<li>瘦客户端：（Thin Client）指的是在客户端-服务器网络体系中的一个基本无需应用程序的计算机终端。</li>
+</ol>
+</blockquote>
+<h2 id="jquery的编程步骤"><a href="#jQuery的编程步骤" class="headerlink" title="jQuery的编程步骤"></a>jQuery的编程步骤</h2><ul>
+<li><p>在HTML页面引入jQuery文件</p>
+<pre><code>&lt;!-- 1\. 引入jQuery文件 --&gt;
+&lt;script src=&quot;jquery-1.11.3.js&quot;&gt;&lt;/script&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li><p>在HTML页面定义元素</p>
+<pre><code>&lt;!-- 定义HTML页面元素 --&gt;
+&lt;input type=&quot;text&quot; value=&quot;请输入你的用户名&quot; id=&quot;username&quot;&gt;
+</code></pre></li>
+</ul>
+<ul>
+<li>使用jQuery的选择器定位元素</li>
+</ul>
+<pre><code>// 2. 使用jQuery选择器定位HTML页面元素
+var $username = $(&quot;#username&quot;);
+</code></pre><ul>
+<li>利用jQuery提供的API完成需求</li>
+</ul>
+<pre><code>// 3. 调用jQuery的API方法
+console.log($username.val());
+</code></pre><hr>
+<h1 id="jquery基础内容"><a href="#jQuery基础内容" class="headerlink" title="jQuery基础内容"></a>jQuery基础内容</h1><h2 id="jquery工厂函数"><a href="#jQuery工厂函数" class="headerlink" title="jQuery工厂函数"></a>jQuery工厂函数</h2><p>jQuery的工厂函数算做是jQuery的一个入口，通过它既可以使用选择器，也可以包装DOM对象，还可以创建元素等功能。</p>
+<p><strong>工厂函数的写法有两种：</strong></p>
+<ul>
+<li>第一种是<code>$( )</code></li>
+<li>第二种是<code>jQuery( )</code></li>
+</ul>
+<blockquote>
+<p>这里的”$”符号就表示jQuery，是jQuery的一个约定。<br>不仅如此，jQuery也建议通过jQuery获取的元素变量前都增加”$”符号。目前有很多JS库都效仿了jQuery的这种做法，当然也引起了多个使用””的JS库一起使用时的一些冲突，主要还是集中在”$”的使用权上。</p>
+</blockquote>
+<h2 id="jquery对象与dom对象"><a href="#jQuery对象与DOM对象" class="headerlink" title="jQuery对象与DOM对象"></a>jQuery对象与DOM对象</h2><ul>
+<li>DOM对象<ul>
+<li>定义：是指通过DOM获取的元素。</li>
+</ul>
+</li>
+<li>jQuery对象<ul>
+<li>定义：是通过包装DOM对象后产生的一种对象（jQuery自定义的全局对象）。</li>
+<li>可以说jQuery底层其实还是DOM对象。</li>
+<li><strong>注意：</strong>jQuery是类数组对象，所以jQuery对象中可能包含多个DOM对象或一个DOM对象，这要看具体情况。</li>
+</ul>
+</li>
+<li>DOM对象转换为jQuery对象<ul>
+<li>DOM对象要想转换为jQuery对象，需要使用jQuery的工厂函数 $( ) 将其包裹，返回的就是对应的jQuery对象。</li>
+</ul>
+</li>
+</ul>
+<pre><code>// DOM对象
+var username = document.getElementById(&quot;username&quot;);
+// DOM对象转换为jQuery对象
+var $username = $(username);
+// 测试
+console.log($username.val());
+</code></pre><ul>
+<li>jQuery对象转换为DOM对象<ul>
+<li>jQuery对象是数组对象。jQuery对象[索引值]可以直接转换为对应的DOM对象</li>
+</ul>
+</li>
+</ul>
+<pre><code> // jQuery对象
+ var $user = $(&quot;#username&quot;);
+ // 1\. jQuery对象是数组对象
+ var user1 = $user[0];
+ // 测试
+ console.log(user1.value);
+
+
+jQuery提供了get(index)方法。jQuery对象.get(索引值)也可以转换为对应的DOM对象
+
+
+ // jQuery对象
+ var $user = $(&quot;#username&quot;);
+ // 2\. jQuery提供get(index)方法进行转换
+ var user2 = $user.get(0);
+ // 测试
+ console.log(user2.value);
+</code></pre><h1 id="jquery选择器"><a href="#jQuery选择器" class="headerlink" title="jQuery选择器"></a>jQuery选择器</h1><p>jQuery的选择器的想法是源于CSS中的选择器的用法，其实在JavaScript中也有类似的用法，比如querySelector( )或querySelectorAll( )方法的使用，也是借助CSS中的选择器来定位HTML页面元素的。只不过相比jQuery中的选择器，JavaScript中的querySelector( )或querySelectorAll( )方法的性能相对差一些而已。</p>
+<p>jQuery的选择器最主要的作用就是用于定位HTML页面的元素。它不仅可以定位HTML页面中具体某个元素，还可以通过各种方式定位复合条件的一组元素等等。</p>
+<p>jQuery的选择器最大的特点就是将定位元素和元素行为进行了有效的分离。这是在实际开发中非常必要的一项特点！</p>
+<h1 id="jquery选择器的种类"><a href="#jQuery选择器的种类" class="headerlink" title="jQuery选择器的种类"></a>jQuery选择器的种类</h1><p>jQuery中使用其工厂函数 $( ) 作为容器，来接收jQuery的选择器内容。而jQuery的选择器则以字符串形式传递给jQuery的工厂函数。jQuery的选择器种类大概可以分为以下几种：</p>
+<h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2><pre><code>// 通过元素的 id 属性值获取
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;#one&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+// 选取带有指定class属性值
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;.mini&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+// 选择元素名 element 的元素
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;div&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+//选择所有元素 (多用于上下文搜索)
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;*&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+//并集选择器
+$(&apos;#btn5&apos;).click(function(){
+    $(&apos;span,#two&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>通配符选择器（*）默认匹配HTML页面中所有的元素。</li>
+<li>复合选择器（多个选择器并列使用）的使用，每个选择器之间使用”,”进行分割。并且复合选择器匹配的结果是多个选择器的并集效果。</li>
+</ol>
+</blockquote>
+<h2 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a>层级选择器</h2><pre><code>//选择祖先元素下所有的后代元素
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;body div&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选择父元素下匹配的所有子元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;body &gt; div&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选取紧接某元素后的下一个元素
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;.one + div&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选取某元素后的所有兄弟元素
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;#two ~ div&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<p>selectors~selector2选择器，是获取符合selector1选择器的元素后面所有符合selector2选择器的兄弟元素。jQuery中还有一个方法siblings( )，是获取指定元素的所有兄弟元素。</p>
+</blockquote>
+<h2 id="基本过滤选择器"><a href="#基本过滤选择器" class="headerlink" title="基本过滤选择器"></a>基本过滤选择器</h2><pre><code>//获取第一个元素
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;div:first&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//获取最后一个元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;div:last&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+
+//去除所有与选定选择器匹配的元素
+//选择class不为one的 所有div元素.
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;div:not(.one)&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+
+//获取索引值为偶数的. 从0开始计数
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;div:even&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//获取索引值为奇数的. 从0开始计数
+$(&apos;#btn5&apos;).click(function(){
+    $(&apos;div:odd&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//选取指定索引值的元素 从0开始计数
+$(&apos;#btn6&apos;).click(function(){
+    $(&apos;div:eq(3)&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//选取所有大于指定索引值的元素 great than
+$(&apos;#btn7&apos;).click(function(){
+    $(&apos;div:gt(3)&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//选取所有小于指定索引值的元素 less than
+$(&apos;#btn8&apos;).click(function(){
+    $(&apos;div:lt(3)&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//选择 所有的标题元素.比如h1, h2, h3等等...
+$(&apos;#btn9&apos;).click(function(){
+    $(&apos;:header&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+})
+//选择 当前正在执行动画的所有元素.
+$(&apos;#btn10&apos;).click(function(){
+    $(&apos;:animated&apos;).css(&quot;background&quot;,&quot;#bfa&quot;);
+});
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>“:not(selector)”选择器，不仅可以匹配到class属性值不是one的元素，还匹配到没有class属性的元素。这不仅仅只是一个反操作的过程。</li>
+<li>“:even”和”:odd”选择器，表示索引值为偶数或者索引值为奇数的元素，但是需要注意的是索引值是从 0 开始的。</li>
+<li>:header”选择器，是匹配 h1 - h6 标题元素，并不能匹配指定的某个标题元素。如果需要匹配具体某个标题元素可以使用元素选择器，所以这种用法在实际开发中很少见到。</li>
+<li>“:animated”选择器，是匹配正在执行动画效果的元素，但需要注意的是它只能匹配jQuery执行的动画效果，而不能匹配其他技术实现的动画效果。</li>
+</ol>
+</blockquote>
+<h2 id="内容过滤选择器"><a href="#内容过滤选择器" class="headerlink" title="内容过滤选择器"></a>内容过滤选择器</h2><pre><code>//查找包含某个文本的元素
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;div:contains(di)&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选取所有不包含子元素或者文本的空元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;div:empty&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选取含有子元素或者文本的元素
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;div:has(.mini)&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//指定目标前的指定父元素
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;div:parent&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>“:has(selector)”选择器，匹配含有符合selector选择器元素的元素，并不是匹配符合selector的元素。</li>
+</ol>
+</blockquote>
+<h2 id="可见性过滤选择器"><a href="#可见性过滤选择器" class="headerlink" title="可见性过滤选择器"></a>可见性过滤选择器</h2><pre><code>//获取所有不可见元素，或者type为hidden的元素
+$(&apos;#btn_hidden&apos;).click(function(){
+    $(&apos;div:hidden&apos;).show(3000).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//选取所有可见的元素.
+$(&apos;#btn_visible&apos;).click(function(){
+    $(&apos;div:visible&apos;).css(&quot;background&quot;,&quot;#FF6500&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>show( )方法表示将隐藏的元素显示，其参数表示动画执行的时长。（后面的内容会详细讲到）。</li>
+</ol>
+</blockquote>
+<h2 id="属性过滤选择器"><a href="#属性过滤选择器" class="headerlink" title="属性过滤选择器"></a>属性过滤选择器</h2><pre><code>//获取含有属性名的元素
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;div[title]&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+//[attribute=value]  获取属性等于某个属性值的元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;div[title=test]&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+// [attribute!=value]  获取属性不等于某个属性值的元素
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;div[title!=test]&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+//[attribute^=value]  获取属性以某些值开头的元素
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;div[title^=te]&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+//[attribute$=value]  获取属性以某些值结尾的元素
+$(&apos;#btn5&apos;).click(function(){
+    $(&quot;div[title$=est]&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+//[attribute*=value]  获取属性包含某些值的元素
+$(&apos;#btn6&apos;).click(function(){
+    $(&quot;div[title*=es]&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+
+//[selector1][selector2][selectorN] 交集选择器
+//需要同时满足多个条件时使用
+$(&apos;#btn7&apos;).click(function(){
+    $(&quot;div[id][title*=es]&quot;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>“[attrName!=value]”选择器，匹配attrName属性的值不等于value的元素，但也包含没有attrName属性的所有元素。</li>
+<li>“[attribute][attribute]”属性复合选择器，是多个属性过滤选择器并列使用，匹配的结果是多个属性过滤选择器的交集。</li>
+</ol>
+</blockquote>
+<h2 id="子元素过滤选择器"><a href="#子元素过滤选择器" class="headerlink" title="子元素过滤选择器"></a>子元素过滤选择器</h2><pre><code>//:nth-child( index )选取父元素下的第N个子或奇偶元素  index 从 1 开始
+$(&apos;#btn1&apos;).click(function(){
+    $(&apos;div.one :nth-child(2)&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//:first-child 父元素下的第一个子元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&apos;div.one :first-child&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//:last-child  父元素下的最后一个子元素
+$(&apos;#btn3&apos;).click(function(){
+    $(&apos;div.one :last-child&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+//:only-child 选取某个元素是父元素中唯一的子元素
+$(&apos;#btn4&apos;).click(function(){
+    $(&apos;div.one :only-child&apos;).css(&quot;background&quot;,&quot;#bbffaa&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>子元素过滤选择器的特殊用法，就是在其前面需要增加空格。不然子元素过滤选择器将不会有效果！</li>
+<li>“nth-child(index)”选择器中的index是从 0 开始的。</li>
+</ol>
+</blockquote>
+<h2 id="表单对象属性过滤选择器"><a href="#表单对象属性过滤选择器" class="headerlink" title="表单对象属性过滤选择器"></a>表单对象属性过滤选择器</h2><pre><code>//:enabled    获取所有input元素
+$(&apos;#btn1&apos;).click(function(){
+    $(&quot;#form1 input:enabled&quot;).val(&quot;这里变化了！&quot;);
+    return false;
+})
+//:disabled     获取所有不可用input元素
+$(&apos;#btn2&apos;).click(function(){
+    $(&quot;#form1 input:disabled&quot;).val(&quot;这里变化了！&quot;);
+    return false;
+})
+//:checked     获取所有选中框元素(单选框, 复选框)
+$(&quot;:checkbox&quot;).click(countChecked);
+function countChecked() {
+    var n = $(&quot;input:checked&quot;).length;
+    $(&quot;div&quot;).eq(0).html(&quot;&lt;strong&gt;有&quot;+n+&quot; 个被选中!&lt;/strong&gt;&quot;);
+}
+//:selected     获取所有选中的option元素
+$(&quot;select&quot;).change(function () {
+    var str = &quot;&quot;;
+    $(&quot;select :selected&quot;).each(function () {
+         str += $(this).text() + &quot;,&quot;;
+    });
+    $(&quot;div&quot;).eq(1).html(&quot;&lt;strong&gt;你选中的是：&quot;+str+&quot;&lt;/strong&gt;&quot;);
+})
+</code></pre><blockquote>
+<p><strong>需要注意</strong></p>
+<ol>
+<li>“:checked”选择器，匹配checkbox和radio元素中被选中的。</li>
+<li>“:selected”选择器，匹配select元素中option元素被选中的。</li>
+</ol>
+</blockquote>
+<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h2><pre><code>var $alltext = $(&quot;#form1 :text&quot;);
+var $allpassword= $(&quot;#form1 :password&quot;);
+var $allradio= $(&quot;#form1 :radio&quot;);
+var $allcheckbox= $(&quot;#form1 :checkbox&quot;);
+
+var $allsubmit= $(&quot;#form1 :submit&quot;);
+var $allimage= $(&quot;#form1 :image&quot;);
+var $allreset= $(&quot;#form1 :reset&quot;);
+var $allbutton= $(&quot;#form1 :button&quot;); // &lt;input type=button /&gt;  和 &lt;button &gt;&lt;/button&gt;都可以匹配
+var $allfile= $(&quot;#form1 :file&quot;);
+var $allhidden= $(&quot;#form1 :hidden&quot;); // &lt;input type=&quot;hidden&quot; /&gt;和&lt;div style=&quot;display:none&quot;&gt;test&lt;/div&gt;都可以匹配.
+var $allselect = $(&quot;#form1 select&quot;);
+var $alltextarea = $(&quot;#form1 textarea&quot;);
+
+var $AllInputs = $(&quot;#form1 :input&quot;);
+var $inputs = $(&quot;#form1 input&quot;);
+
+$(&quot;div&quot;).append(&quot; 有&quot; + $alltext.length + &quot; 个（ :text 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allpassword.length + &quot; 个（ :password 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allradio.length + &quot; 个（ :radio 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allcheckbox.length + &quot; 个（ :checkbox 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allsubmit.length + &quot; 个（ :submit 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allimage.length + &quot; 个（ :image 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allreset.length + &quot; 个（ :reset 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allbutton.length + &quot; 个（ :button 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allfile.length + &quot; 个（ :file 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allhidden.length + &quot; 个（ :hidden 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $allselect.length + &quot; 个（ select 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 有&quot; + $alltextarea.length + &quot; 个（ textarea 元素）&lt;br/&gt;&quot;)
+        .append(&quot; 表单有 &quot; + $inputs.length + &quot; 个（input）元素。&lt;br/&gt;&quot;)
+        .append(&quot; 总共有 &quot; + $AllInputs.length + &quot; 个(:input)元素。&lt;br/&gt;&quot;)
+        .css(&quot;color&quot;, &quot;red&quot;)
+
+$(&quot;form&quot;).submit(function () { return false; }); // return false;不能提交.
+</code></pre><h1 id="jquery的dom操作"><a href="#jQuery的DOM操作" class="headerlink" title="jQuery的DOM操作"></a>jQuery的DOM操作</h1><p>DOM是Document Object Model的缩写，译为文档对象模型。根据W3C DOM规范，DOM是一种与浏览器、平台、语言无关的接口，使用该接口可以轻松地访问页面中所有的标准组件。</p>
+<p>jQuery中另一个重要的组成部分就是封装了原生DOM的操作。</p>
+<h2 id="html操作"><a href="#html操作" class="headerlink" title="html操作"></a>html操作</h2><p>html( )方法用于读取或设置指定元素的HTML代码，类似于原生DOM中的innerHTML属性。</p>
+<pre><code>//获取&lt;p&gt;元素的HTML代码
+$(&quot;input:eq(0)&quot;).click(function(){
+    alert(  $(&quot;p&quot;).html() );
+});
+//设置&lt;p&gt;元素的HTML代码
+$(&quot;input:eq(1)&quot;).click(function(){
+    $(&quot;p&quot;).html(&quot;&lt;strong&gt;你最讨厌的水果是?&lt;/strong&gt;&quot;);
+});
+</code></pre><h2 id="文本操作"><a href="#文本操作" class="headerlink" title="文本操作"></a>文本操作</h2><p>text( )方法用于读取或设置指定元素的文本内容，类似于原生DOM中的textContent属性。</p>
+<pre><code>//获取&lt;p&gt;元素的文本
+$(&quot;input:eq(0)&quot;).click(function(){
+    alert(  $(&quot;p&quot;).text() );
+});
+//设置&lt;p&gt;元素的文本
+$(&quot;input:eq(1)&quot;).click(function(){
+    $(&quot;p&quot;).text(&quot;你最讨厌的水果是?&quot;);
+});
+</code></pre><h2 id="值操作"><a href="#值操作" class="headerlink" title="值操作"></a>值操作</h2><p>val( )方法用于读取或设置指定元素的value属性值，类似于原生DOM中的value属性。</p>
+<pre><code>//获取按钮的value值
+$(&quot;input:eq(0)&quot;).click(function(){
+   alert( $(this).val() );
+});
+//设置按钮的value值
+$(&quot;input:eq(1)&quot;).click(function(){
+   $(this).val(&quot;我被点击了!&quot;);
+});
+</code></pre><h2 id="属性操作"><a href="#属性操作" class="headerlink" title="属性操作"></a>属性操作</h2><ul>
+<li>attr( )方法用于获取或设置指定元素的属性，类似于原生DOM中的getAttribute()方法和setAttribute()方法。</li>
+<li>removeAttr( )方法用于删除指定元素的属性，类似于原生DOM中的removeAttribute()方法。</li>
+</ul>
+<pre><code>//设置&lt;p&gt;元素的属性&apos;title&apos;
+$(&quot;input:eq(0)&quot;).click(function(){
+   $(&quot;p&quot;).attr(&quot;title&quot;,&quot;选择你最喜欢的水果.&quot;);
+});
+//获取&lt;p&gt;元素的属性&apos;title&apos;
+$(&quot;input:eq(1)&quot;).click(function(){
+   alert( $(&quot;p&quot;).attr(&quot;title&quot;) );
+});
+//删除&lt;p&gt;元素的属性&apos;title&apos;
+$(&quot;input:eq(2)&quot;).click(function(){
+   $(&quot;p&quot;).removeAttr(&quot;title&quot;);
+});
+</code></pre><hr>
+<h2 id="样式操作"><a href="#样式操作" class="headerlink" title="样式操作"></a>样式操作</h2><p>操作样式主要分成两种：</p>
+<ul>
+<li>一种是使用style属性直接设置CSS中的属性</li>
+<li>一种是使用class样式名称设置CSS。</li>
+</ul>
+<h3 id="attr-方法操作"><a href="#attr-方法操作" class="headerlink" title="attr( )方法操作"></a>attr( )方法操作</h3><p>class本身就是元素中的一个属性，所以也可以使用设置属性方式来设置或删除class样式。</p>
+<p><strong>语法结构：</strong><code>element.attr(&quot;class&quot;,className)</code></p>
+<blockquote>
+<p><strong>值得注意的是：</strong>使用attr( )方法设置class样式时，无论之前是否包含class属性，之前设置的样式都会被覆盖。</p>
+</blockquote>
+<pre><code>//&lt;input type=&quot;button&quot; value=&quot;采用属性增加样式&quot;  id=&quot;b1&quot;/&gt;
+$(&quot;#b1&quot;).click(function(){
+   $(&quot;#mover&quot;).attr(&quot;class&quot;,&quot;one&quot;);
+})
+</code></pre><h3 id="addclass-方法操作"><a href="#addClass-方法操作" class="headerlink" title="addClass( )方法操作"></a>addClass( )方法操作</h3><p>addClass( )方法表示追加样式，也就是说，无论之前是否包含class样式，调用addClass( )方法只是在其基础上增加一个新的样式。而之前设置的样式依旧存在。</p>
+<pre><code>//&lt;input type=&quot;button&quot; value=&quot; addClass&quot;  id=&quot;b2&quot;/&gt;
+$(&quot;#b2&quot;).click(function(){
+   $(&quot;#mover&quot;).addClass(&quot;mini&quot;);
+})
+</code></pre><h3 id="removeclass-方法操作"><a href="#removeClass-方法操作" class="headerlink" title="removeClass( )方法操作"></a>removeClass( )方法操作</h3><p>removeClass( )方法表示删除样式，但该方法的使用有以下三种方式：</p>
+<ul>
+<li>removeClass()，默认不传递任何参数，表示删除所有样式。</li>
+<li>removeClass(className)，传递一个样式名称，表示删除指定一个样式。</li>
+<li>removeClass(className1 className2),传递多个样式名称，中间使用空格隔开，表示删除指定多个样式。</li>
+</ul>
+<pre><code>//&lt;input type=&quot;button&quot; value=&quot;removeClass&quot;  id=&quot;b3&quot;/&gt;
+$(&quot;#b3&quot;).click(function(){
+   $(&quot;#mover&quot;).removeClass();
+})
+</code></pre><h3 id="toggleclass-方法操作"><a href="#toggleClass-方法操作" class="headerlink" title="toggleClass( )方法操作"></a>toggleClass( )方法操作</h3><p>toggleClass( )方法表示在没有样式与指定样式之间进行切换，效果相当于使用addClass()方法和removeClass()方法。</p>
+<pre><code>//&lt;input type=&quot;button&quot; value=&quot; 切换样式&quot;  id=&quot;b4&quot;/&gt;
+$(&quot;#b4&quot;).click(function(){
+   // 在没有样式与指定样式之间切换
+   $(&quot;#mover&quot;).toggleClass(&quot;one&quot;);
+})
+</code></pre><h3 id="hasclass-方法操作"><a href="#hasClass-方法操作" class="headerlink" title="hasClass( )方法操作"></a>hasClass( )方法操作</h3><p>hasClass( )方法表示指定元素是否包含指定样式。</p>
+<blockquote>
+<p><strong>值得注意的是：</strong>hasClass( )方法并不能判断是否包含样式，而是判断是否包含指定样式。</p>
+</blockquote>
+<pre><code>//&lt;input type=&quot;button&quot; value=&quot; hasClass&quot;  id=&quot;b5&quot;/&gt;
+$(&quot;#b5&quot;).click(function(){
+   // 判断是否含有某个指定样式
+   alert($(&quot;#mover&quot;).hasClass(&quot;one&quot;));
+})
+</code></pre><h3 id="css-方法操作"><a href="#css-方法操作" class="headerlink" title="css( )方法操作"></a>css( )方法操作</h3><p>css( )方法也可以获取或设置CSS样式，但并不是通过class属性，而是通过style属性直接设置CSS中的属性。</p>
+<ul>
+<li>获取样式：<ul>
+<li>css(attrName)方法，用于获取当前style属性的值。</li>
+</ul>
+</li>
+<li>设置样式：<ul>
+<li>css(attrName,attrValue)方法，用于设置当前style属性的值。<strong>但每次只能设置一个CSS中的属性。</strong></li>
+<li>css({attrName:attrValue,attrName:attrValue,…})方法，用于设置当前style属性的值。<strong>每次可以设置多个CSS中的属性。</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="遍历节点"><a href="#遍历节点" class="headerlink" title="遍历节点"></a>遍历节点</h2><h3 id="获取父元素"><a href="#获取父元素" class="headerlink" title="获取父元素"></a>获取父元素</h3><p>parent( )方法可以获取指定元素的父元素。</p>
+<ul>
+<li>parent()方法，不传递任何参数，是获取指定元素的父元素。</li>
+<li><p>parent(selector)方法，是获取指定元素的符合selector选择器的父元素。</p>
+<pre><code>//第一个&lt;li&gt;元素的父元素
+var $parent = $(&quot;li:first&quot;).parent();    
+</code></pre></li>
+</ul>
+<h3 id="获取子元素"><a href="#获取子元素" class="headerlink" title="获取子元素"></a>获取子元素</h3><p>children( )方法可以获取指定元素的子元素。</p>
+<ul>
+<li>children()方法，不传递任何参数，可以获取指定元素的所有子元素。</li>
+<li><p>children(selector)方法，是获取指定元素的符合selector选择器的子元素。</p>
+<pre><code>var $ul = $(&quot;ul&quot;).children();
+alert( $ul.length );//&lt;p&gt;元素下有3个子元素
+</code></pre></li>
+</ul>
+<h3 id="获取兄弟元素"><a href="#获取兄弟元素" class="headerlink" title="获取兄弟元素"></a>获取兄弟元素</h3><ul>
+<li>next( )方法是获取指定元素的下一个兄弟元素。<ul>
+<li>next()方法，不传递任何参数，是获取指定元素的下一个兄弟元素。</li>
+<li>next(selector)方法，是获取指定元素符合selector选择器的下一个兄弟元素。</li>
+</ul>
+</li>
+</ul>
+<pre><code>var $p1 = $(&quot;p&quot;).next();
+alert( $p1.html() );  //  紧邻&lt;p&gt;元素后的同辈元素
+</code></pre><ul>
+<li>prev( )方法是获取指定元素的上一个兄弟元素。<ul>
+<li>prev( )方法，不传递任何参数，是获取指定元素的上一个兄弟元素。</li>
+<li>prev(selector)方法，是获取指定元素符合selector选择器的上一个兄弟元素。</li>
+</ul>
+</li>
+</ul>
+<pre><code>var $ul = $(&quot;ul&quot;).prev();
+alert( $ul.html() );  //  紧邻&lt;ul&gt;元素前的同辈元素
+</code></pre><ul>
+<li>siblings( )方法是获取指定元素的所有兄弟元素。<ul>
+<li>siblings( )方法，不传递任何参数，是获取指定元素的所有兄弟元素。</li>
+<li>siblings(selector)方法，是获取指定元素符合selector选择器的所有兄弟元素。</li>
+</ul>
+</li>
+</ul>
+<pre><code>var $p2 = $(&quot;p&quot;).siblings();
+alert( $p2.html() );  //  紧邻&lt;p&gt;元素的唯一同辈元素
+</code></pre><h3 id="查找指定后代元素"><a href="#查找指定后代元素" class="headerlink" title="查找指定后代元素"></a>查找指定后代元素</h3><p>find(selector)方法，可以查找指定元素的符合selector选择器的后代元素。</p>
+<pre><code>var eles = $(&quot;ul&quot;).find(&quot;li&quot;);    //查找ul元素下的所有li元素
+</code></pre><hr>
+<h2 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h2><h4 id="创建操作"><a href="#创建操作" class="headerlink" title="创建操作"></a>创建操作</h4><p>按照原生DOM的思路，创建节点需要分别创建元素节点、文本节点和属性节点。</p>
+<ul>
+<li>元素节点，使用jQuery的工厂函数 $(HTML代码)来创建。</li>
+<li>文本节点，使用jQuery的text( )方法进行设置文本，而不需要创建文本节点。</li>
+<li>属性节点，使用jQuery的attr( )方法进行设置属性，而不需要创建属性节点。</li>
+</ul>
+<p>其实，使用jQuery创建元素，并不需要按照原生DOM的思路进行创建。可以一步代码创建完整的元素。</p>
+<pre><code>//创建一个&lt;li&gt;元素 包括元素节点,文本节点和属性节点
+var $li = $(&quot;&lt;li title=&apos;香蕉&apos;&gt;香蕉&lt;/li&gt;&quot;);
+
+// 获取&lt;ul&gt;节点 &lt;li&gt;的父节点
+var $parent = $(&quot;ul&quot;);
+
+// 添加到&lt;ul&gt;节点中，使之能在网页中显示
+$parent.append($li);
+</code></pre><h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><p>jQuery中的插入操作分为内部插入和外部插入。</p>
+<ul>
+<li>内部插入<ul>
+<li>append( )方法，将append( )后面的元素插入在append( )前面指定元素的后面。</li>
+<li>prepend( )方法，将prepend( )后面的元素插入在prepend( )前面指定元素的前面。</li>
+<li>appendTo( )方法，将appendTo( )前面的元素插入在appendTo( )后面的元素的后面。</li>
+<li>prependTo( )方法，将prependTo( )前面的元素插入在prependTo( )后面的元素的前面。</li>
+</ul>
+</li>
+</ul>
+<pre><code>// append - append后面的节点被添加到append前面的节点的后面
+$(&quot;#tj&quot;).append($(&quot;#ms&quot;));
+
+// prepend - prepend后面的节点被添加到prepend前面的节点的前面
+$(&quot;#tj&quot;).prepend($(&quot;#ms&quot;));
+
+// appendTo - appendTo前面的节点被添加到appendTo后面的节点的后面
+$(&quot;#tj&quot;).appendTo($(&quot;#ms&quot;));
+
+// prependTo - prependTo前面的节点被添加到prependTo后面的节点的前面
+$(&quot;#tj&quot;).prependTo($(&quot;#ms&quot;));
+</code></pre><ul>
+<li>外部插入<ul>
+<li>before( )方法，将before( )后面的元素插入在before( )前面的指定元素的前面。</li>
+<li>after( )方法，将after( )后面的元素插入在after( )前面的指定元素的后面。</li>
+<li>insertBefore( )方法，将insertBefore( )前面的元素插入在insertBefore( )后面的指定元素的前面。</li>
+<li>insertAfter( )方法，将insertAfter( )前面的元素插入在insertAfter( )后面的指定元素的后面。</li>
+</ul>
+</li>
+</ul>
+<pre><code>// before - before后面的节点被添加到before前面的节点的前面
+$(&quot;#tj&quot;).before($(&quot;#ms&quot;));
+
+// after - after后面的节点被添加到after前面的节点的后面
+$(&quot;#tj&quot;).after($(&quot;#ms&quot;));
+
+// insertBefore
+$(&quot;#tj&quot;).insertBefore($(&quot;#ms&quot;));
+
+// insertAfter
+$(&quot;#tj&quot;).insertAfter($(&quot;#ms&quot;));
+</code></pre><h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h4><p>jQuery中的删除操作分别为remove( )方法和empty( )方法。</p>
+<ul>
+<li>remove( )方法，删除自身元素及所有后代元素。</li>
+<li>empty( )方法，删除所有后代元素，但保留自身元素。该方法适合完成清空操作。</li>
+</ul>
+<pre><code>$(&quot;ul li:eq(1)&quot;).remove(); // 获取第二个&lt;li&gt;元素节点后，将它从网页中删除
+
+$(&quot;ul li&quot;).remove(&quot;li[title!=菠萝]&quot;);  //把&lt;li&gt;元素中属性title不等于&quot;菠萝&quot;的&lt;li&gt;元素删除
+
+$(&quot;ul li:eq(1)&quot;).empty(); // 获取第二个&lt;li&gt;元素节点后，清空此元素里的内容
+</code></pre><h4 id="替换操作"><a href="#替换操作" class="headerlink" title="替换操作"></a>替换操作</h4><p>jQuery中的替换操作分别为replaceWith( )方法和replaceAll( )方法。</p>
+<ul>
+<li>replaceWith( )方法，该方法前面的元素是被替换元素。</li>
+<li>replaceAll( )方法，就是颠倒了的repalceWith( )方法。</li>
+</ul>
+<pre><code>$(&quot;p&quot;).replaceWith(&quot;&lt;strong&gt;你最不喜欢的水果是?&lt;/strong&gt;&quot;);
+// 同样的实现： $(&quot;&lt;strong&gt;你最不喜欢的水果是?&lt;/strong&gt;&quot;).replaceAll(&quot;p&quot;);
+</code></pre><h4 id="复制操作"><a href="#复制操作" class="headerlink" title="复制操作"></a>复制操作</h4><p>jQuery中的复制操作使用的方法为clone( )方法，该方法与原生DOM中的复制节点的方法cloneNode( )在使用时极为相似。</p>
+<ul>
+<li>原生DOM中的cloneNode(Boolean)方法，参数Boolean表示是否复制后代节点。</li>
+<li>jQuery中的clone(Boolean)方法，参数Boolean表示是否复制事件。</li>
+</ul>
+<pre><code>$(&quot;ul li&quot;).click(function(){
+   $(this).clone().appendTo(&quot;ul&quot;); // 复制当前点击的节点，并将它追加到&lt;ul&gt;元素
+   $(this).clone(true).appendTo(&quot;ul&quot;); // 注意参数true
+   //可以复制自己，并且他的副本也有同样功能
+})
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;jquery入门&quot;&gt;&lt;a href=&quot;#jQuery入门&quot; class=&quot;headerlink&quot; title=&quot;jQuery入门&quot;&gt;&lt;/a&gt;jQuery入门&lt;/h1&gt;&lt;h2 id=&quot;javascript类库&quot;&gt;&lt;a href=&quot;#JavaScript类库&quot; cla
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://yoursite.com/categories/jQuery/"/>
+    
+    
+      <category term="jQuery" scheme="http://yoursite.com/tags/jQuery/"/>
+    
+  </entry>
+  
+  <entry>
     <title>this关键字解析</title>
     <link href="http://yoursite.com/2017/08/02/this%E5%85%B3%E9%94%AE%E5%AD%97%E8%A7%A3%E6%9E%90/"/>
     <id>http://yoursite.com/2017/08/02/this关键字解析/</id>
     <published>2017-08-02T14:11:19.000Z</published>
-    <updated>2017-08-02T14:25:22.286Z</updated>
+    <updated>2017-08-10T07:49:15.257Z</updated>
     
     <content type="html"><![CDATA[<h1 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h1><p>独立函数调用,如果使用了非严格模式,this会绑定到全局对象(window)</p>
 <pre><code>function foo(){
