@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-10T09:05:07.135Z</updated>
+  <updated>2017-08-14T13:24:17.948Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,1334 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>h5常用新增元素</title>
+    <link href="http://yoursite.com/2017/08/12/h5%E5%B8%B8%E7%94%A8%E6%96%B0%E5%A2%9E%E5%85%83%E7%B4%A0/"/>
+    <id>http://yoursite.com/2017/08/12/h5常用新增元素/</id>
+    <published>2017-08-12T12:50:35.000Z</published>
+    <updated>2017-08-14T13:24:17.948Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="html5简介"><a href="#HTML5简介" class="headerlink" title="HTML5简介"></a>HTML5简介</h3><p>HTML5 是 HTML 标准的下一个重要版本，用来替代 HTML 4.01，XHTML 1.0 以及 XHTML 1.1。HTML5 也是一种在万维网上构建和呈现内容的标准。</p>
+<p>HTML5 是万维网联盟（W3C）和网页超文本技术工作小组（WHATWG）合作的产物。</p>
+<p>HTML5 是近十年来 Web 开发标准最巨大的飞跃。HTML5 并非仅仅用来表示 Web 内容，它将 Web 带入一个成熟的应用平台，在 HTML5 平台上，视频、音频、图象、动画，以及同电脑的交互都被标准化。<br>HTML5 引入了许多新元素和属性帮助我们构建现代化的网站。</p>
+<h4 id="html5引入的主要特性"><a href="#HTML5引入的主要特性" class="headerlink" title="HTML5引入的主要特性"></a>HTML5引入的主要特性</h4><ul>
+<li>新的语义化元素： 比如 <code>&lt;header&gt;</code>，<code>&lt;footer&gt;</code> 和 <code>&lt;section&gt;</code>。</li>
+<li>表单 2.0： 改进了 HTML Web 表单，为 <code>&lt;input&gt;</code> 标签引入了一些新的属性。</li>
+<li>持久的本地存储： 为了不通过第三方插件实现。</li>
+<li>WebSocket： 用于 Web 应用程序的下一代双向通信技术。</li>
+<li>服务器推送事件： HTML5 引入了从 Web 服务器到 Web 浏览器的事件，也被称作服务器推送事件（SSE）。</li>
+<li>Canvas： 支持用 JavaScript 以编程的方式进行二维绘图。</li>
+<li>音频和视频： 在网页中嵌入音频或视频而无需借助第三方插件。</li>
+<li>地理定位： 用户可以选择与我们的网页共享他们的地理位置。</li>
+<li>拖放： 把同一网页上的条目从一个位置拖放到另一个位置。</li>
+</ul>
+<h4 id="html5浏览器支持"><a href="#HTML5浏览器支持" class="headerlink" title="HTML5浏览器支持"></a>HTML5浏览器支持</h4><p>最新版 Apple Safari，Mozilla FireFox 和 Opera 支持大部分 HTML5 特性，IE9 也支持一些 HTML5 的功能。</p>
+<p>预装在 iPhones，iPads 和 Android 手机上的手机浏览器都对 HTML5 有良好的支持。</p>
+<hr>
+<h3 id="自定义属性"><a href="#自定义属性" class="headerlink" title="自定义属性"></a>自定义属性</h3><ul>
+<li>给程序使用的数据，存储在自定义属性中</li>
+<li>自定义属性只能存储字符串或数字</li>
+<li>语法规则<ul>
+<li>必须以 <code>data-</code>前缀开头</li>
+<li>多个英文单词使用 <code>-</code> 连接<br>  <code>&lt;div data-demo-test=&quot;hello world&quot;&gt;&lt;/div&gt;</code></li>
+</ul>
+</li>
+<li>Dom使用 <code>dataset</code> 操作自定义属性<ul>
+<li>去掉前缀 <code>data-</code></li>
+<li>连接符内容采用驼峰命名法<br>  <code>boxDom.dataset.demoTest</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="html5新语义标签"><a href="#HTML5新语义标签" class="headerlink" title="HTML5新语义标签"></a>HTML5新语义标签</h3><ul>
+<li>新增的语音元素等同于DIV. 可以独占一行.也可以设置宽高</li>
+<li>没有语义的情况下，就需要是使用DIV了。</li>
+<li><strong>注意：千万不要为了语义而语义</strong></li>
+</ul>
+<p><img src="http://i.imgur.com/avukaOA.jpg" alt=""></p>
+<h4 id="header元素"><a href="#header元素" class="headerlink" title="header元素"></a>header元素</h4><ul>
+<li>header 元素代表“网页”或“section”的页眉。</li>
+<li>通常包含h1-h6元素或hgroup，作为整个页面或者一个内容块的标题。</li>
+<li>也可以包裹一节的目录部分，一个搜索框，一个nav，或者任何相关logo。</li>
+<li>整个页面没有限制header元素的个数，可以拥有多个，可以为每个内容块增加一个header元素</li>
+<li>注意事项: <ol>
+<li>可以是“网页”或任意“section”的头部部分；</li>
+<li>没有个数限制。</li>
+<li>如果hgroup或h1-h6自己就能工作的很好，那就不要用header。</li>
+</ol>
+</li>
+</ul>
+<h4 id="footer元素"><a href="#footer元素" class="headerlink" title="footer元素"></a>footer元素</h4><ul>
+<li>footer元素代表“网页”或“section”的页脚</li>
+<li>通常含有该节的一些基本信息，譬如：作者，相关文档链接，版权资料。</li>
+<li>如果footer元素包含了整个节，那么它们就代表附录，索引，提拔，许可协议，标签，类别等一些其他类似信息。</li>
+<li>注意事项: <ol>
+<li>可以是“网页”或任意“section”的底部部分；</li>
+<li>没有个数限制，除了包裹的内容不一样，其他跟header类似。</li>
+</ol>
+</li>
+</ul>
+<h4 id="hgroup元素"><a href="#hgroup元素" class="headerlink" title="hgroup元素"></a>hgroup元素</h4><ul>
+<li>hgroup元素代表“网页”或“section”的标题</li>
+<li>当元素有多个层级时，该元素可以将h1到h6元素放在其内</li>
+<li>譬如文章的主标题和副标题的组合</li>
+<li>注意事项: <ol>
+<li>如果只需要一个h1-h6标签就不用hgroup</li>
+<li>如果有连续多个h1-h6标签就用hgroup</li>
+<li>如果有连续多个标题和其他文章数据，h1-h6标签就用hgroup包住，和其他文章元数据一起放入header标签。</li>
+</ol>
+</li>
+</ul>
+<h4 id="nav元素"><a href="#nav元素" class="headerlink" title="nav元素"></a>nav元素</h4><ul>
+<li>nav元素代表页面的导航链接区域。用于定义页面的主要导航部分。</li>
+<li>用在整个页面主要导航部分上。可以把导航条标签ul放到nav里面</li>
+</ul>
+<h4 id="article元素"><a href="#article元素" class="headerlink" title="article元素"></a>article元素</h4><ul>
+<li>article代表一个在文档，页面或者网站中自成一体的内容，其目的是为了让开发者独立开发或重用。</li>
+<li>譬如论坛的帖子，博客上的文章，一篇用户的评论，一个互动的widget小工具。  </li>
+<li>注意事项: <ol>
+<li>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。</li>
+<li>article、nav、aside可以理解为特殊的section，所以如果可以用article、nav、aside就不要用section，没实际意义的就用div</li>
+<li>article元素可以嵌套article也可以嵌套section. 也可以section 元素嵌套 article 这是一种特殊情况</li>
+</ol>
+</li>
+</ul>
+<h4 id="section元素"><a href="#section元素" class="headerlink" title="section元素"></a>section元素</h4><ul>
+<li>section元素代表文档中的“节”或“段”</li>
+<li>“段”可以是指一篇文章里按照主题的分段；“节”可以是指一个页面里的分组。</li>
+<li>section通常还带标题，虽然html5中section会自动给标题h1-h6降级，但是最好手动给他们降级</li>
+<li>注意事项: <ol>
+<li>一张页面可以用section划分为简介、文章条目和联系信息。不过在文章内页，最好用article。section不是一般意义上的容器元素，如果想作为样式展示和脚本的便利，可以用div。</li>
+<li>表示文档中的节或者段；</li>
+</ol>
+</li>
+</ul>
+<h4 id="aside元素-次要信息"><a href="#aside元素-次要信息" class="headerlink" title="aside元素 (次要信息)"></a>aside元素 (次要信息)</h4><ul>
+<li>aside元素被包含在article元素中作为主要内容的附属信息部分，其中的内容可以是与当前文章有关的相关资料、标签、名词解释等。（特殊的section）</li>
+<li>在article元素之外使用作为页面或站点全局的附属信息部分。最典型的是侧边栏，其中的内容可以是日志串连，其他组的导航，甚至广告，这些内容相关的页面。</li>
+<li>注意事项: <ol>
+<li>aside在article内表示主要内容的附属信息</li>
+<li>在article之外则可做侧边栏，没有article与之对应，最好不用。</li>
+<li>如果是广告，其他日志链接或者其他分类导航也可以用</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h3 id="html5-表单"><a href="#HTML5-表单" class="headerlink" title="HTML5 表单"></a>HTML5 表单</h3><ul>
+<li><code>&lt;form method=&quot;&quot;&gt;</code> 请求方式<ul>
+<li>get      </li>
+<li>post    </li>
+</ul>
+</li>
+<li><code>&lt;label for=&quot;&quot;&gt;</code> input提示信息<ul>
+<li>需要获取input的id属性值关联</li>
+<li>点击文字,鼠标光标在输入框内闪烁</li>
+</ul>
+</li>
+</ul>
+<h4 id="input"><a href="#input" class="headerlink" title="input"></a>input</h4><ul>
+<li>输入类可选属性<ul>
+<li>email      电子邮箱输入框</li>
+<li>tel           电话号码输入框</li>
+<li>url          网页url地址栏输入框</li>
+<li>search     搜索引擎输入框</li>
+<li>number   输入数字<ul>
+<li>max     最大到</li>
+<li>min      最小到</li>
+<li>step     以某梯度增加或减少</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择类可选属性<ul>
+<li>range    特定范围内的数值选择器<ul>
+<li>max     最大到</li>
+<li>min      最小到</li>
+<li>step     以某梯度增加或减少</li>
+</ul>
+</li>
+<li>color    颜色选择</li>
+<li>detetime-local    日期选择<ul>
+<li>time</li>
+<li>date</li>
+<li>week</li>
+<li>month</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="语义化表单新属性"><a href="#语义化表单新属性" class="headerlink" title="语义化表单新属性"></a>语义化表单新属性</h4><ul>
+<li>placeholder  提示用户输入信息</li>
+<li>autocomplete 是否保存用户输入值<ul>
+<li>on 默认值. 自动填充</li>
+<li>off  关闭自动填充提示</li>
+</ul>
+</li>
+<li>autofocus 自动获取输入焦点</li>
+<li>novalidate    不对输入进行验证. 填写在from中</li>
+<li>maxlength:” length “控制表单输入项的文本长度</li>
+<li>required    当表单提交时,输入项必须有内容</li>
+<li>pattern    基于正则表达式验证格式. 重要的验证必须放在服务器端</li>
+<li>formaction    在提交按钮中定义一个提交地址. 常用于保存草稿</li>
+<li>formnovalidate    不做表单验证</li>
+<li>DOM操作验证状态方法: setCustomValidity( )  <ul>
+<li>不符合自定义验证时, 返回给用户一个自定义的字符串内容. </li>
+<li>验证通过时, 可以填写空串. 一定不能写null</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="html5-history-新方法"><a href="#HTML5-history-新方法" class="headerlink" title="HTML5 history 新方法"></a>HTML5 history 新方法</h3><ul>
+<li>history.pushState ( )     增加历史记录<ul>
+<li>state object 数字，字符串，JSON对象</li>
+<li>title（所有浏览器暂不支持）</li>
+<li>URL [可选]显示在地址栏的网页地址</li>
+</ul>
+</li>
+<li>history.replaceState( )     修改历史记录<ul>
+<li>把当前的历史记录（history entry ）替换成新的历史记录</li>
+<li>参数同pushState</li>
+</ul>
+</li>
+<li>window.onpopstate 当窗口历史记录改变时运行的脚本<br>  -onpopstate触发时机：相同文档中，两个历史记录前进或后退切换时。</li>
+</ul>
+<hr>
+<h3 id="html5-离线存储-api"><a href="#HTML5-离线存储-API" class="headerlink" title="HTML5 离线存储 API"></a>HTML5 离线存储 API</h3><h4 id="cookie存储的特点"><a href="#Cookie存储的特点" class="headerlink" title="Cookie存储的特点"></a>Cookie存储的特点</h4><pre><code>1.cookie由服务器创建，第一次响应后，记录在浏览器
+2.每次请求，cookie都会发动到服务器
+3.每次响应，cookie都会推送到浏览器
+4.在浏览器读取cookie比较繁琐
+5.cookie容量小，只有4kb
+    - cookie 缺点: 需要在客户端和服务器端来回地传送，繁琐且消耗带宽；
+</code></pre><h4 id="storage存储"><a href="#Storage存储" class="headerlink" title="Storage存储"></a>Storage存储</h4><ul>
+<li>sessionStorage和localStorage的比较</li>
+<li>数据生命周期：<ul>
+<li>sessionStorage  数据创建到浏览器页签关闭</li>
+<li>localStorage    数据创建到用户手动清除，或者使用clear(), removeItem(key)删除</li>
+</ul>
+</li>
+<li>数据共享：<ul>
+<li>sessionStorage 条件：同一个浏览器页签</li>
+<li>localStorage   条件：相同域名（协议，域名，端口）的不同网址</li>
+</ul>
+</li>
+<li>数据使用场景：<ul>
+<li>频繁操作且安全性不高的数据</li>
+</ul>
+</li>
+<li>可存储的数据格式：<ol>
+<li>数字</li>
+<li>字符串</li>
+<li>JSON对象，需要使用 JSON.stringify(JSON对象)把其转换成字符串再存储。获取后再调用JSON.parse(JSON的字符串)转成JSON对象再使用。</li>
+</ol>
+</li>
+<li>优点:<ul>
+<li>sessionStorage / localStorage 优点: 保存在服务器端. 存储结构化方便提取</li>
+</ul>
+</li>
+</ul>
+<h4 id="sessionstorage-localstorage"><a href="#sessionStorage-localStorage" class="headerlink" title="sessionStorage / localStorage"></a>sessionStorage / localStorage</h4><ul>
+<li>setItem(“key”, “value”);   <ul>
+<li>增加一个数据</li>
+</ul>
+</li>
+<li>getItem(‘key’) <ul>
+<li>获取对应的value值</li>
+</ul>
+</li>
+<li>removeItem(“key”);  <ul>
+<li>删除一个数据</li>
+</ul>
+</li>
+<li>clear(); <ul>
+<li>清除所有</li>
+</ul>
+</li>
+<li>length<ul>
+<li>获取数据长度</li>
+</ul>
+</li>
+<li>key(num)                   <ul>
+<li>获取指定索引位的key值</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://i.imgur.com/jat4BB1.jpg" alt=""></p>
+<hr>
+<h3 id="html-音视频处理"><a href="#HTML-音视频处理" class="headerlink" title="HTML 音视频处理"></a>HTML 音视频处理</h3><h4 id="视频基础内容"><a href="#视频基础内容" class="headerlink" title="视频基础内容"></a>视频基础内容</h4><p><strong>目前实现网页视频播放的技术 - Flash</strong></p>
+<ul>
+<li>Flash并不是浏览器原生支持(第三方组件)</li>
+<li>Flash的性能并不好</li>
+<li>移动端不支持Flash技术</li>
+</ul>
+<p><strong>HTML 5 提供的视频处理技术 - <code>&lt;video&gt;</code></strong></p>
+<ul>
+<li>提供了相对应的基本处理方式</li>
+<li>提供了高级编程自定义方式</li>
+</ul>
+<p><strong><code>&lt;video&gt;</code>元素所支持的视频格式</strong></p>
+<ul>
+<li>MP4格式：视频文件扩展名为”.mp4”</li>
+<li>OGG格式：视频文件扩展名为”.ogv”</li>
+<li>WEBM格式：视频文件扩展名为:”.webm”<ul>
+<li>是由Google公司推出的(最初Chrome并不支持)</li>
+<li>是目前唯一一个支持超高清的视频格式</li>
+</ul>
+</li>
+</ul>
+<h4 id="如何使用元素"><a href="#如何使用元素" class="headerlink" title="如何使用元素"></a>如何使用<video>元素</video></h4><p><strong>引入单个视频格式</strong></p>
+<pre><code>&lt;video src=&quot;视频文件的路径&quot; autoplay&gt;
+    浏览器不支持的提示内容
+&lt;/video&gt;
+</code></pre><ul>
+<li>autoplay属性：自动播放视频</li>
+<li>width属性：设置视频的宽度</li>
+<li>height属性：设置视频的高度</li>
+<li>style属性：设置CSS样式</li>
+<li>class属性：设置CSS样式</li>
+</ul>
+<pre><code>&lt;video src=&quot;../DATA/oceans-clip.mp4&quot; autoplay width=&quot;640px&quot; height=&quot;400px&quot; style=&quot;background:black;&quot;&gt;
+    非常抱歉,你的浏览器不支持该视频!
+&lt;/video&gt;
+</code></pre><p><strong>引入多个视频格式</strong></p>
+<pre><code>&lt;video autoplay&gt;
+    &lt;source src=&quot;视频文件的路径&quot; /&gt;
+    &lt;source src=&quot;视频文件的路径&quot; /&gt;
+    &lt;source src=&quot;视频文件的路径&quot; /&gt;
+    浏览器不支持的提示内容
+&lt;/video&gt;
+
+
+
+
+&lt;!-- 解决了浏览器对视频格式的兼容问题 --&gt;
+&lt;video autoplay&gt;
+    &lt;!--
+        &lt;source&gt;元素
+        * 引入视频文件(一个&lt;video&gt;元素允许包含多个&lt;source&gt;)
+    --&gt;
+    &lt;source src=&quot;../DATA/oceans-clip.mp4&quot; /&gt;
+    &lt;source src=&quot;../DATA/oceans-clip.ogv&quot; /&gt;
+    &lt;source src=&quot;../DATA/oceans-clip.webm&quot; /&gt;
+&lt;/video&gt;
+</code></pre><h4 id="元素的属性"><a href="#元素的属性" class="headerlink" title="元素的属性"></a><video>元素的属性</video></h4><ul>
+<li>autoplay属性：自动播放</li>
+<li>controls属性：提供控制面板</li>
+</ul>
+<pre><code>&lt;video src=&quot;../DATA/oceans-clip.mp4&quot; controls&gt;&lt;/video&gt;
+</code></pre><ul>
+<li>loop属性：循环播放</li>
+</ul>
+<pre><code>&lt;video src=&quot;../DATA/oceans-clip.mp4&quot; autoplay loop&gt;&lt;/video&gt;
+</code></pre><ul>
+<li><p>poster属性：播放之前实现一张图片</p>
+<pre><code>&lt;video src=&quot;../DATA/oceans-clip.mp4&quot; controls poster=&quot;../DATA/oceans-clip.png&quot;&gt;&lt;/video&gt;
+</code></pre></li>
+<li><p>preload属性：预加载视频</p>
+<ul>
+<li>none：不预加载</li>
+<li>auto：默认值,尽快预加载</li>
+<li>metadata：预加载除视频之外的内容(宽度、高度等)</li>
+</ul>
+</li>
+</ul>
+<h4 id="视频高级编程"><a href="#视频高级编程" class="headerlink" title="视频高级编程"></a>视频高级编程</h4><ul>
+<li>事件<ul>
+<li>play：视频播放时触发</li>
+<li>pause：视频暂停时触发</li>
+<li>ended：视频播放结束时触发</li>
+<li>error：视频播放错误时触发</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>方法<ul>
+<li>play( )：用于播放视频</li>
+<li>pause( )：用于暂停视频</li>
+<li>load( )：用于加载视频</li>
+<li>canPlayType( )：判断当前浏览器是否支持当前视频格式</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>属性<ul>
+<li>paused：如果视频为暂停或未播放时,返回true</li>
+<li>ended：如果视频播放完毕时,返回true</li>
+<li>duration：返回当前视频的时长</li>
+<li>currentTime：获取或设置视频的当前位置</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="音频基础内容"><a href="#音频基础内容" class="headerlink" title="音频基础内容"></a>音频基础内容</h4><ul>
+<li><p>目前音频处理技术</p>
+<ul>
+<li>Flash技术也可以音频处理</li>
+<li>Media Player播放器允许嵌入在网页中</li>
+</ul>
+</li>
+<li><p>HTML 5提供的音频处理 - <code>&lt;audio&gt;</code></p>
+<ul>
+<li>浏览器原生支持</li>
+<li>性能很好</li>
+<li>移动端支持</li>
+</ul>
+</li>
+<li><p><code>&lt;audio&gt;</code>元素支持的音频格式</p>
+<ul>
+<li>mp3 </li>
+<li>ogg</li>
+<li>wav</li>
+</ul>
+</li>
+</ul>
+<h4 id="如何使用元素"><a href="#如何使用元素-1" class="headerlink" title="如何使用元素"></a>如何使用<audio>元素</audio></h4><ul>
+<li>引入单个音频格式</li>
+</ul>
+<pre><code>&lt;audio src=&quot;音频文件的路径&quot; autoplay&gt;
+    浏览器不支持的提示内容
+&lt;/audio&gt;
+</code></pre><ul>
+<li>引入多个音频格式</li>
+</ul>
+<pre><code>&lt;audio autoplay&gt;
+    &lt;source src=&quot;音频文件的路径&quot; /&gt;
+    &lt;source src=&quot;音频文件的路径&quot; /&gt;
+    &lt;source src=&quot;音频文件的路径&quot; /&gt;
+    浏览器不支持的提示内容
+&lt;/audio&gt;
+</code></pre><h4 id="元素的特有属性"><a href="#元素的特有属性" class="headerlink" title="元素的特有属性"></a><audio>元素的特有属性</audio></h4><ul>
+<li>autoplay属性：自动播放</li>
+<li>controls属性：提供控制面板</li>
+<li>loop属性：循环播放</li>
+<li>preload属性：预加载视频<ul>
+<li>none：不预加载</li>
+<li>auto：默认值,尽快预加载</li>
+<li>metadata：预加载除视频之外的内容(宽度、高度等)</li>
+</ul>
+</li>
+</ul>
+<h4 id="元素的高级编程"><a href="#元素的高级编程" class="headerlink" title="元素的高级编程"></a><audio>元素的高级编程</audio></h4><ul>
+<li><p>事件</p>
+<ul>
+<li>play：视频播放时触发</li>
+<li>pause：视频暂停时触发</li>
+<li>ended：视频播放结束时触发</li>
+<li>error：视频播放错误时触发</li>
+</ul>
+</li>
+<li><p>方法</p>
+<ul>
+<li>play( )：用于播放视频</li>
+<li>pause( )：用于暂停视频</li>
+<li>load( )：用于加载视频</li>
+<li>canPlayType( )：判断当前浏览器是否支持当前视频格式</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li>paused：如果视频为暂停或未播放时,返回true</li>
+<li>ended：如果视频播放完毕时,返回true</li>
+<li>duration：返回当前视频的时长</li>
+<li>currentTime：获取或设置视频的当前位置</li>
+</ul>
+</li>
+</ul>
+<h3 id="canvas画布"><a href="#Canvas画布" class="headerlink" title="Canvas画布"></a>Canvas画布</h3><h4 id="canvas简介"><a href="#Canvas简介" class="headerlink" title="Canvas简介"></a>Canvas简介</h4><ul>
+<li>Canvas技术允许在HTML页面直接绘制图形</li>
+<li>不再需要引入外部图片(图形),HTML页面性能有所提高</li>
+<li>可以实现一些比较复杂的图形绘制工作</li>
+</ul>
+<h4 id="canvas主要应用方向"><a href="#Canvas主要应用方向" class="headerlink" title="Canvas主要应用方向"></a>Canvas主要应用方向</h4><ul>
+<li>Web应用方面主要实现图表类</li>
+<li>网页游戏方面 - 主要实现2D效果</li>
+</ul>
+<h4 id="html5提供的技术"><a href="#HTML5提供的技术" class="headerlink" title="HTML5提供的技术"></a>HTML5提供的技术</h4><ul>
+<li>Canvas - 主要以2D为主</li>
+<li>WebGL - 主要以3D为主</li>
+<li>SVG - 矢量图</li>
+</ul>
+<h3 id="如何使用canvas画布"><a href="#如何使用Canvas画布" class="headerlink" title="如何使用Canvas画布"></a>如何使用Canvas画布</h3><h4 id="使用canvas"><a href="#使用canvas" class="headerlink" title="使用canvas"></a>使用canvas</h4><ul>
+<li>在HTML页面中定义<code>&lt;canvas&gt;</code>元素</li>
+<li>设置<code>&lt;canvas&gt;</code>元素宽度和高度使用属性方式</li>
+<li>使用CSS样式方式设置<code>&lt;canvas&gt;</code>元素的宽度和高度</li>
+</ul>
+<h4 id="在js代码中"><a href="#在JS代码中" class="headerlink" title="在JS代码中"></a>在JS代码中</h4><ul>
+<li>获取<code>&lt;canvas&gt;</code>元素</li>
+<li>通过<code>&lt;canvas&gt;</code>元素,创建画布对象<ul>
+<li>getContext(‘2d’)函数</li>
+<li>返回画布对象</li>
+</ul>
+</li>
+<li>利用画布对象进行图形的绘制</li>
+</ul>
+<pre><code>&lt;!-- 
+    1\. 在HTML页面中,定义&lt;canvas&gt;元素
+     * 默认只定义&lt;canvas&gt;元素时
+       * 效果非常类似于&lt;div&gt;元素,但不一样的地方:
+         * &lt;div&gt;元素在默认情况下,不具有高度和宽度的
+         * &lt;canvas&gt;元素在默认情况下,具有高度和宽度的
+           * 宽度 - 300px
+           * 高度 - 150px
+     * 设置&lt;canvas&gt;元素的高度和宽度
+       * (建议)使用属性width和height
+       * 使用CSS中的属性width和height
+         * 绘制的图形会被拉伸
+  --&gt;
+&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot; style=&quot;background:pink;&quot;&gt;&lt;/canvas&gt;
+&lt;!--
+&lt;canvas id=&quot;canvas&quot; style=&quot;width:500px;height:500px;&quot;&gt;&lt;/canvas&gt;
+--&gt;
+&lt;script&gt;
+    // 2\. 获取HTML页面中的&lt;canvas&gt;元素
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    /*
+       3\. 通过&lt;canvas&gt;元素,创建画布对象
+         使用getContext(type)函数,创建画布对象
+         * 该函数返回画布对象
+         * type参数
+           * 设置当前创建的画布是2d还是3d
+           * 注意
+             * 参数选项是2d(3d效果使用WebGL)
+             * 必须写成&quot;2d&quot;
+     */
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 4\. 利用画布对象,进行绘制图形
+    context.fillRect(10,10,100,100);
+&lt;/script&gt;
+</code></pre><hr>
+<h3 id="canvas的特点"><a href="#Canvas的特点" class="headerlink" title="Canvas的特点"></a>Canvas的特点</h3><ul>
+<li>绘制的图形与HTML页面之间是无关系的</li>
+<li>通过Canvas绘制的图形不能使用DOM API</li>
+<li>通过Canvas绘制的图形不能绑定事件</li>
+<li>Canvas画布最终是以图片(png|jpg)形式出现</li>
+<li>绘制图形默认的颜色为黑色</li>
+</ul>
+<hr>
+<h3 id="绘制图形"><a href="#绘制图形" class="headerlink" title="绘制图形"></a>绘制图形</h3><h4 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><p><strong>fillRect(x,y,width,height) - 绘制实心(填充)矩形</strong></p>
+<ul>
+<li>x和y：绘制矩形的左上角的坐标值</li>
+<li>width：设置绘制矩形的宽度(单位为px)</li>
+<li>height：设置绘制矩形的高度(单位为px)</li>
+</ul>
+<p><strong>strokeRect(x,y,width,height) - 绘制空心(描边)矩形</strong></p>
+<ul>
+<li>x和y：绘制矩形的左上角的坐标值</li>
+<li>width：设置绘制矩形的宽度(单位为px)</li>
+<li>height：设置绘制矩形的高度(单位为px)</li>
+</ul>
+<p><strong>clearRect(x,y,width,height) - 清除指定区域的矩形</strong></p>
+<ul>
+<li>x和y：绘制矩形的左上角的坐标值</li>
+<li>width：设置绘制矩形的宽度(单位为px)</li>
+<li>height：设置绘制矩形的高度(单位为px)</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    // 1\. 获取&lt;canvas&gt;元素
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    // 2\. 创建画布对象
+    var context = canvas.getContext(&apos;2d&apos;);
+    // 3\. 绘制图形
+    // a. 绘制实心矩形
+    context.fillRect(10,10,100,100);
+    // b. 绘制空心矩形
+    context.strokeRect(120,10,100,100);
+    // c. 清除指定区域的矩形
+    context.fillRect(230,10,100,100);
+    context.clearRect(240,20,80,80);
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h4><ul>
+<li>fillStyle：设置填充样式</li>
+<li>strokeStyle：设置描边样式</li>
+<li>globalAlpha：设置透明度(0-1)</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>一定要先设置样式(颜色),再绘制图形</li>
+<li>每次改变样式(颜色),重新设置</li>
+</ul>
+</blockquote>
+<p><strong>设置颜色的方式</strong></p>
+<ul>
+<li>使用普通的单词</li>
+<li>使用#000000形式</li>
+<li>使用三原色rgba(0,0,0,1)形式</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&apos;2d&apos;);
+
+    // a. 设置填充样式
+    context.fillStyle = &quot;pink&quot;;
+    // b. 绘制实心矩形
+    context.fillRect(10,10,100,100);
+
+    context.fillStyle = &quot;blue&quot;;
+    context.fillRect(10,120,100,100);
+
+    // 设置描边样式
+    context.strokeStyle = &quot;red&quot;;
+    context.strokeRect(120,10,100,100);
+
+    context.strokeStyle = &quot;green&quot;;
+    context.strokeRect(120,120,100,100);
+
+    // 设置透明度
+    context.globalAlpha = 0.5;
+    context.fillRect(230,10,100,100);
+
+    context.fillStyle = &quot;black&quot;;
+    context.globalAlpha = 0.1;
+    context.fillRect(230,120,100,100);
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="设置渐变"><a href="#设置渐变" class="headerlink" title="设置渐变"></a>设置渐变</h4><p><strong>线性渐变</strong></p>
+<p>createLinearGradient(x1,y1,x2,y2)</p>
+<ul>
+<li>基准线：是设置线性渐变的标准</li>
+<li>参数<ul>
+<li>x1和y1：基准线的起点坐标值</li>
+<li>x2和y2：基准线的终点坐标值</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&apos;2d&apos;);
+    /*
+       设置线性渐变
+       createLinearGradient(x1,y1,x2,y2)方法
+       * 该方法具有返回值,是渐变对象
+     */
+    var grd = context.createLinearGradient(0,0,100,100);
+    /*
+       设置线性渐变的颜色和位置
+       addColorStop(position,color)
+       * position - 设置颜色的位置
+         * 值的范围为 0 - 1
+       * color - 设置颜色
+     */
+    grd.addColorStop(0,&quot;red&quot;);
+    grd.addColorStop(1,&quot;blue&quot;);
+    grd.addColorStop(0.5,&quot;yellow&quot;);
+    // 将设置的线性渐变,赋值给样式(fillStyle和strokeStyle)
+    context.fillStyle = grd;
+    // 绘制矩形
+    context.fillRect(0,0,100,100);
+&lt;/script&gt;
+</code></pre><p><strong>射线(扇形)渐变</strong></p>
+<p>createRadialGradient(x1,y1,r1,x2,y2,r2)</p>
+<ul>
+<li>基准圆(2个)：设置射线渐变的标准</li>
+<li>参数<ul>
+<li>x1和y1：第一个基准圆的圆心</li>
+<li>r1：第一个基准圆的半径</li>
+<li>x2和y2：第二个基准圆的圆心</li>
+<li>r2：第二个基准圆的半径</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    /*
+       设置射线渐变
+       createRadialGradient(x1,y1,r1,x2,y2,r2)
+       * 该方法返回渐变对象
+     */
+    var grd = context.createRadialGradient(100,100,100,canvas.width,canvas.height,200);
+    /*
+       设置渐变颜色
+     */
+    grd.addColorStop(0,&quot;red&quot;);
+    grd.addColorStop(1,&quot;blue&quot;);
+    // 将渐变对象赋值给样式
+    context.fillStyle = grd;
+    // 绘制矩形
+    context.fillRect(0,0,canvas.width,canvas.height);
+&lt;/script&gt;
+</code></pre><p><strong>设置渐变颜色</strong></p>
+<p>addColorStop(position,color)</p>
+<ul>
+<li>position：设置渐变颜色的位置<ul>
+<li>值的范围必须是 0-1</li>
+</ul>
+</li>
+<li>color：设置渐变的颜色</li>
+</ul>
+<hr>
+<h4 id="绘制文字"><a href="#绘制文字" class="headerlink" title="绘制文字"></a>绘制文字</h4><p><strong>设置文字的属性：font属性</strong></p>
+<p><strong>设置文字的对齐方式</strong></p>
+<ul>
+<li>水平对齐：textAlign<ul>
+<li>left：基准线在左边</li>
+<li>center：基准线在中间</li>
+<li>right：基准线在右边</li>
+</ul>
+</li>
+<li>垂直对齐：textBaseline<ul>
+<li>top：基准线在上边</li>
+<li>middle：基准线在中间</li>
+<li>bottom：基准线在下边</li>
+<li>hanging：悬挂基线</li>
+<li>alphabetic：字母基线</li>
+</ul>
+</li>
+</ul>
+<p><strong>绘制文字的方法</strong></p>
+<ul>
+<li>fillText(text,x,y)：绘制实心文字<ul>
+<li>text：绘制的文字内容</li>
+<li>x和y：绘制文字的坐标值</li>
+</ul>
+</li>
+<li>strokeText(text,x,y)：绘制空心文字<ul>
+<li>text：绘制的文字内容</li>
+<li>x和y：绘制文字的坐标值</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="设置阴影"><a href="#设置阴影" class="headerlink" title="设置阴影"></a>设置阴影</h4><ul>
+<li>shadowColor：设置阴影颜色</li>
+<li>shadowOffsetX：设置水平方向阴影</li>
+<li>shadowOffsetY：设置垂直方向阴影</li>
+<li>shadowBlur：设置阴影程度</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&apos;2d&apos;);
+
+    // 设置文字样式
+    context.font = &quot;bold 48px 宋体&quot;;
+    // 基准线
+    context.beginPath();
+    context.moveTo(100,0);
+    context.lineTo(100,400);
+    context.stroke();
+    // 设置水平对齐
+    context.textAlign = &quot;right&quot;;
+    // 绘制文字
+    context.fillText(&quot;达内&quot;,100,50);
+
+    // 设置水平对齐
+    context.textAlign = &quot;center&quot;;
+    // 绘制文字
+    context.fillText(&quot;达内&quot;,100,100);
+
+    // 设置水平对齐
+    context.textAlign = &quot;left&quot;;
+    // 绘制文字
+    context.fillText(&quot;达内&quot;,100,150);
+
+    // 基准线
+    context.beginPath();
+    context.moveTo(0,300);
+    context.lineTo(500,300);
+    context.stroke();
+    // 设置垂直对齐
+    context.textBaseline = &quot;top&quot;;
+    context.strokeText(&quot;达内&quot;,0,300);
+
+    context.textBaseline = &quot;middle&quot;;
+    context.strokeText(&quot;达内&quot;,100,300);
+
+    context.textBaseline = &quot;bottom&quot;;
+    context.strokeText(&quot;达内&quot;,200,300);
+
+    context.textBaseline = &quot;hanging&quot;;
+    context.strokeText(&quot;达内&quot;,300,300);
+
+    context.textBaseline = &quot;alphabetic&quot;;
+    context.strokeText(&quot;达内&quot;,400,300);
+&lt;/script&gt;
+</code></pre><hr>
+<h3 id="canvas绘图"><a href="#Canvas绘图" class="headerlink" title="Canvas绘图"></a>Canvas绘图</h3><h4 id="创建路径"><a href="#创建路径" class="headerlink" title="创建路径"></a>创建路径</h4><p>图形的基本元素是路径。路径是通过不同颜色和宽度的线段或曲线相连形成的不同形状的点的集合。一个路径，甚至一个子路径，都是闭合的。使用路径绘制图形需要一些额外的步骤。</p>
+<ol>
+<li>首先，需要创建路径起始点。</li>
+<li>然后，使用画图命令去画出路径。</li>
+<li>之后，把路径封闭。</li>
+<li>一旦路径生成，你就能通过描边或填充路径区域来渲染图形。</li>
+</ol>
+<h4 id="绘制矩形"><a href="#绘制矩形-1" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用rect( x, y, width, height )方法，设置矩形的坐标值及宽度和高度。<ul>
+<li>x和y：表示矩形的左上角坐标值。</li>
+<li>width和height：表示矩形的宽度和高度。</li>
+</ul>
+</li>
+<li>通过fill( )或stroke( )方法进行绘制。<ul>
+<li>fill( )方法：通过填充路径的内容区域绘制实心图形。</li>
+<li>stroke( )方法：通过线条绘制空心图形。</li>
+</ul>
+</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 绘制实心矩形
+    context.beginPath();// 开始创建路径
+    context.rect(10,10,100,100);// 设置矩形
+    //context.closePath();
+    context.fill();// 调用绘制方法
+    // 绘制空心矩形
+    context.beginPath();// 开始创建路径
+    context.rect(10,120,100,100);// 设置矩形
+    context.stroke();// 调用绘制方法
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="绘制圆形"><a href="#绘制圆形" class="headerlink" title="绘制圆形"></a>绘制圆形</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用arc( x, y, radius, startAngle, endAngle, anticlockwise )方法，设置矩形的坐标值及宽度和高度。<ul>
+<li>x和y：表示圆形的圆心坐标值。</li>
+<li>radius：表示圆形的半径。</li>
+<li>startAngle：表示绘制圆形的开始点，值为 0。</li>
+<li>endAngle：表示绘制圆形的结束点，值为 Math.PI*2。</li>
+<li>anticlockwise：表示是以顺时针还是以逆时针方式绘制圆形，Boolean值。<ul>
+<li>false：默认值，表示顺时针。</li>
+<li>true：表示逆时针。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过fill( )或stroke( )方法进行绘制。<ul>
+<li>fill( )方法：通过填充路径的内容区域绘制实心图形。</li>
+<li>stroke( )方法：通过线条绘制空心图形。</li>
+</ul>
+</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 绘制实心圆形
+    context.beginPath();// 开始创建路径
+    context.arc(170,60,50,0,Math.PI*2);// 设置圆形
+    context.fill();// 调用绘制方法
+    // 绘制空心圆形
+    context.beginPath();
+    context.arc(170,170,50,0,Math.PI*2);
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="绘制弧形"><a href="#绘制弧形" class="headerlink" title="绘制弧形"></a>绘制弧形</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用arc( x, y, radius, startAngle, endAngle, anticlockwise )方法，设置圆形。<ul>
+<li>x和y：表示圆形的圆心坐标值。</li>
+<li>radius：表示圆形的半径。</li>
+<li>startAngle：表示绘制圆形的开始点。<ul>
+<li>取值范围：0 至 Math.PI*2。</li>
+</ul>
+</li>
+<li>endAngle：表示绘制圆形的结束点。<ul>
+<li>取值范围：0 至 Math.PI*2。</li>
+</ul>
+</li>
+<li>anticlockwise：表示是以顺时针还是以逆时针方式绘制圆形，Boolean值。<ul>
+<li>false：默认值，表示顺时针。</li>
+<li>true：表示逆时针。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通过fill( )或stroke( )方法进行绘制。<ul>
+<li>fill( )方法：通过填充路径的内容区域绘制实心图形。</li>
+<li>stroke( )方法：通过线条绘制空心图形。</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>注意：</strong><br>如果绘制的是空心弧形的话，在arc( )方法调用后：</p>
+<ul>
+<li>如果使用closePath( )方法的话，绘制的图形会自动将终点和起点连接成线。</li>
+<li>如果不用closePath( )方法的话，绘制的图形会呈现开口状。</li>
+</ul>
+</blockquote>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 绘制空心弧形
+    context.beginPath();
+    context.arc(390,60,50,Math.PI/2,Math.PI*3/2);
+    context.stroke();
+
+    context.beginPath();
+    context.arc(390,170,50,Math.PI/2,Math.PI*3/2,true);
+    context.stroke();
+
+    context.beginPath();
+    context.arc(390,280,50,Math.PI/2,Math.PI*3/2);
+    context.closePath();
+    context.stroke();
+
+    context.beginPath();
+    context.arc(390,390,50,Math.PI/2,Math.PI*3/2,true);
+    context.closePath();
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="绘制直线"><a href="#绘制直线" class="headerlink" title="绘制直线"></a>绘制直线</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用moveTo( x, y )方法，设置直线的起点坐标值。<ul>
+<li>x和y：表示直线的起点坐标值。</li>
+</ul>
+</li>
+<li>使用lineTo( x, y )方法，设置直线的终点坐标值。<ul>
+<li>x和y：表示直线的终点坐标值。</li>
+</ul>
+</li>
+<li>通过stroke( )方法进行绘制。</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 绘制直线
+    context.beginPath();
+    context.moveTo(10,10);
+    context.lineTo(200,10);
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="绘制折线"><a href="#绘制折线" class="headerlink" title="绘制折线"></a>绘制折线</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用moveTo( x, y )方法，设置直线的起点坐标值。<ul>
+<li>x和y：表示直线的起点坐标值。</li>
+</ul>
+</li>
+<li>使用lineTo( x, y )方法，设置直线的终点坐标值。<ul>
+<li>x和y：表示直线的终点坐标值。</li>
+</ul>
+</li>
+<li>通过stroke( )方法进行绘制。</li>
+</ol>
+<blockquote>
+<p><strong>注意：</strong><br>在绘制折线的时候，lineTo( )方法既可以绘制折点，也可以绘制终点。</p>
+</blockquote>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 绘制折线一
+    context.beginPath();
+    context.moveTo(10,100);
+    context.lineTo(200,100);
+    context.stroke();
+
+    context.beginPath();
+    context.moveTo(200,100);
+    context.lineTo(200,300);
+    context.stroke();
+    // 绘制折线二
+    context.beginPath();
+    context.moveTo(400,100);
+    context.lineTo(500,100);
+    context.lineTo(500,400);
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h4 id="绘制多边形"><a href="#绘制多边形" class="headerlink" title="绘制多边形"></a>绘制多边形</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用moveTo( x, y )方法，设置直线的起点坐标值。<ul>
+<li>x和y：表示直线的起点坐标值。</li>
+</ul>
+</li>
+<li>使用lineTo( x, y )方法，设置直线的终点坐标值。<ul>
+<li>x和y：表示直线的终点坐标值。</li>
+</ul>
+</li>
+<li>调用closePath( )方法，闭合当前绘制的路径。</li>
+<li>通过fill( )或stroke( )方法进行绘制。</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 利用折线的绘制,绘制空心矩形
+    context.beginPath();
+    context.moveTo(50,50);
+    context.lineTo(150,50);
+    context.lineTo(150,150);
+    context.lineTo(50,150);
+    context.lineTo(100,100);
+    context.lineTo(50,50);
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h3 id="设置线型"><a href="#设置线型" class="headerlink" title="设置线型"></a>设置线型</h3><p>所有画布操作都使用相同的线型，即默认线型。实际上线条的宽度、端点都可以根据实际绘图需要进行调整。</p>
+<h4 id="设置线宽"><a href="#设置线宽" class="headerlink" title="设置线宽"></a>设置线宽</h4><p>lineWidth：指定线条粗细，默认值是1.0。</p>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;578&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+  var canvas = document.getElementById(&apos;myCanvas&apos;);
+  var context = canvas.getContext(&apos;2d&apos;);
+
+  context.beginPath();
+  context.moveTo(100, 150);
+  context.lineTo(450, 50);
+  context.lineWidth = 15;
+  context.stroke();
+&lt;/script&gt;
+</code></pre><h4 id="设置端点形状"><a href="#设置端点形状" class="headerlink" title="设置端点形状"></a>设置端点形状</h4><p>lineCap：指定线条端点形状。</p>
+<ul>
+<li>butt：默认，向线条的每个末端添加平直的边缘。</li>
+<li>round：向线条的每个末端添加圆形线帽。</li>
+<li>square：向线条的每个末端添加正方向线帽。</li>
+</ul>
+<blockquote>
+<p><strong>注意：</strong>round和square会使线条略变微长。</p>
+</blockquote>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;578&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&apos;myCanvas&apos;);
+    var context = canvas.getContext(&apos;2d&apos;);
+
+    // butt line cap (top line)
+    context.beginPath();
+    context.moveTo(200, canvas.height / 2 - 50);
+    context.lineTo(canvas.width - 200, canvas.height / 2 - 50);
+    context.lineWidth = 20;
+    context.strokeStyle = &apos;#0000ff&apos;;
+    context.lineCap = &apos;butt&apos;;
+    context.stroke();
+
+    // round line cap (middle line)
+    context.beginPath();
+    context.moveTo(200, canvas.height / 2);
+    context.lineTo(canvas.width - 200, canvas.height / 2);
+    context.lineWidth = 20;
+    context.strokeStyle = &apos;#0000ff&apos;;
+    context.lineCap = &apos;round&apos;;
+    context.stroke();
+
+    // square line cap (bottom line)
+    context.beginPath();
+    context.moveTo(200, canvas.height / 2 + 50);
+    context.lineTo(canvas.width - 200, canvas.height / 2 + 50);
+    context.lineWidth = 20;
+    context.strokeStyle = &apos;#0000ff&apos;;
+    context.lineCap = &apos;square&apos;;
+    context.stroke();
+&lt;/script&gt;
+</code></pre><h4 id="设置交点形状"><a href="#设置交点形状" class="headerlink" title="设置交点形状"></a>设置交点形状</h4><ul>
+<li>lineJoin：指定两条线之间的连接点形状。<ul>
+<li>round：创建圆角。</li>
+<li>bevel：创建斜角。</li>
+<li>miter：默认，创建尖角。</li>
+</ul>
+</li>
+<li>miterLimit：与lineJoin一起使用，当lineJoin设置为miter时，可用于确定线条交接点的延伸范围。</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;578&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&apos;myCanvas&apos;);
+    var context = canvas.getContext(&apos;2d&apos;);
+
+    // set line width for all lines
+    context.lineWidth = 25;
+
+    // miter line join (left)
+    context.beginPath();
+    context.moveTo(99, 150);
+    context.lineTo(149, 50);
+    context.lineTo(199, 150);
+    context.lineJoin = &apos;miter&apos;;
+    context.stroke();
+
+    // round line join (middle)
+    context.beginPath();
+    context.moveTo(239, 150);
+    context.lineTo(289, 50);
+    context.lineTo(339, 150);
+    context.lineJoin = &apos;round&apos;;
+    context.stroke();
+
+    // bevel line join (right)
+    context.beginPath();
+    context.moveTo(379, 150);
+    context.lineTo(429, 50);
+    context.lineTo(479, 150);
+    context.lineJoin = &apos;bevel&apos;;
+    context.stroke();
+&lt;/script&gt;
+</code></pre><hr>
+<h3 id="处理图像"><a href="#处理图像" class="headerlink" title="处理图像"></a>处理图像</h3><p>在HTML5中，不仅可以使用Canvas API来绘制图形，还可以读取磁盘或网络中的图像文件，然后使用Canvas API将该图像绘制在画布中。</p>
+<h4 id="绘制图像"><a href="#绘制图像" class="headerlink" title="绘制图像"></a>绘制图像</h4><ol>
+<li>加载图像。<ul>
+<li>使用相同页面中的图片。</li>
+<li>使用相同页面中的其他Canvas元素。</li>
+<li>可以脚本通过Image( )构造函数创建图像。</li>
+</ul>
+</li>
+<li>绘制图像。<ul>
+<li>drawImage( img, x, y )方法<ul>
+<li>img：需要绘制的图像。</li>
+<li>x和y：绘制图像的坐标值。</li>
+</ul>
+</li>
+<li>drawImage( img, x, y, width, height )方法<ul>
+<li>img：需要绘制的图像。</li>
+<li>x和y：绘制图像的坐标值。</li>
+<li>width和height：设置绘制图像的宽度和高度。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;578&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&apos;myCanvas&apos;);
+    var context = canvas.getContext(&apos;2d&apos;);
+    var imageObj = new Image();
+    imageObj.src = &apos;darth-vader.jpg&apos;;
+
+    imageObj.onload = function() {
+        context.drawImage(imageObj, 69, 50);
+    };
+&lt;/script&gt;
+</code></pre><blockquote>
+<p><strong>注意：</strong>若调用 drawImage 时，图片没装载完，那什么都不会发生（在一些旧的浏览器中可能会抛出异常）。因此你应该用load时间来保证不会在加载完毕之前使用这个图片：</p>
+</blockquote>
+<pre><code>var img = new Image();   // 创建img元素
+img.src = &apos;myImage.png&apos;; // 设置图片源地址
+img.onload = function(){
+    // 执行drawImage语句
+}
+</code></pre><hr>
+<h4 id="平铺图像"><a href="#平铺图像" class="headerlink" title="平铺图像"></a>平铺图像</h4><p>所谓图像平铺就是用按一定比例缩小后的图像将画布填满。</p>
+<ol>
+<li>加载图像。<ul>
+<li>使用相同页面中的图片。</li>
+<li>使用相同页面中的其他Canvas元素。</li>
+<li>可以脚本通过Image( )构造函数创建图像。</li>
+</ul>
+</li>
+<li>设置平铺方式。<ul>
+<li>createPattern( img, type )方法<ul>
+<li>img：需要平铺的图像。</li>
+<li>type：平铺方式。<ul>
+<li>no-repeat：不平铺</li>
+<li>repeat-x：水平方向平铺</li>
+<li>repeat-y：垂直方向平铺</li>
+<li>repeat：全方向平铺</li>
+</ul>
+</li>
+<li>该方法返回平铺对象。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>将平铺对象赋值给filleStyle或strokeStyle属性。</li>
+<li>将平铺的图像进行绘制。</li>
+</ol>
+<pre><code>&lt;canvas id=&quot;myCanvas&quot; width=&quot;578&quot; height=&quot;200&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&apos;myCanvas&apos;);
+    var context = canvas.getContext(&apos;2d&apos;);
+
+    var imageObj = new Image();
+    imageObj.src = &apos;wood-pattern.png&apos;;
+    imageObj.onload = function() {
+        var pattern = context.createPattern(imageObj, &apos;repeat&apos;);
+
+        context.rect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = pattern;
+        context.fill();
+    };
+&lt;/script&gt;
+</code></pre><blockquote>
+<p><strong>注意：</strong>若调用 createPattern 时，图片没装载完，那什么都不会发生（在一些旧的浏览器中可能会抛出异常）。因此你应该用load时间来保证不会在加载完毕之前使用这个图片：</p>
+</blockquote>
+<pre><code>var img = new Image();   // 创建img元素
+img.src = &apos;myImage.png&apos;; // 设置图片源地址
+img.onload = function(){
+    // 执行createPattern语句
+}
+</code></pre><hr>
+<h4 id="切割图像"><a href="#切割图像" class="headerlink" title="切割图像"></a>切割图像</h4><ol>
+<li>调用beginPath( )方法，创建新建一条路径。</li>
+<li>使用rect( )或arc( )方法</li>
+<li>通过clip( )方法进行切割。</li>
+</ol>
+<pre><code>var canvas = document.getElementById(&apos;canvas&apos;);
+var context = elem.getContext(&apos;2d&apos;);
+var image=new Image();
+image.src=&quot;img/flower.jpg&quot;;
+image.onload=function(){
+    context.drawImage(image,0,0,280,190);
+}
+context.beginPath();
+context.arc(140,95,60,0,Math.PI*2,true);
+context.closePath();
+context.clip();
+</code></pre><hr>
+<h3 id="画布方法"><a href="#画布方法" class="headerlink" title="画布方法"></a>画布方法</h3><h4 id="状态方法"><a href="#状态方法" class="headerlink" title="状态方法"></a>状态方法</h4><ul>
+<li>save（），保存当前画布属性、状态。</li>
+<li>restore（），恢复画布属性、状态。</li>
+</ul>
+<pre><code>var ctx = document.getElementById(&apos;canvas&apos;).getContext(&apos;2d&apos;);
+
+ctx.fillRect(0,0,150,150);   // Draw a rectangle with default settings
+ctx.save();                  // Save the default state
+
+ctx.fillStyle = &apos;#09F&apos;       // Make changes to the settings
+ctx.fillRect(15,15,120,120); // Draw a rectangle with new settings
+
+ctx.save();                  // Save the current state
+ctx.fillStyle = &apos;#FFF&apos;       // Make changes to the settings
+ctx.globalAlpha = 0.5;    
+ctx.fillRect(30,30,90,90);   // Draw a rectangle with new settings
+
+ctx.restore();               // Restore previous state
+ctx.fillRect(45,45,60,60);   // Draw a rectangle with restored settings
+
+ctx.restore();               // Restore original state
+ctx.fillRect(60,60,30,30);   // Draw a rectangle with restored settings
+</code></pre><h4 id="转换方法"><a href="#转换方法" class="headerlink" title="转换方法"></a>转换方法</h4><ul>
+<li>translate(x, y)：用来移动 canvas 和它的原点到一个不同的位置。<ul>
+<li>x 是左右偏移量。</li>
+<li>y 是上下偏移量。</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot; style=&quot;background:pink&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    context.fillRect(50,50,100,100);
+    // 平移方法
+    context.translate(250,250);
+    context.fillRect(50,50,100,100);
+&lt;/script&gt;
+</code></pre><ul>
+<li>scale(x, y)：用它来增减图形在 canvas 中的像素数目，对形状，位图进行缩小或者放大。<ul>
+<li>x,y 分别是横轴和纵轴的缩放因子，它们都必须是正值。</li>
+<li>值分类：<ul>
+<li>值比 1.0 小表示缩小。</li>
+<li>比 1.0 大则表示放大。</li>
+<li>值为 1.0 时什么效果都没有。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot; style=&quot;background:pink&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    context.fillRect(400,250,100,100);
+    // 旋转方法
+    context.rotate(Math.PI/180*15);
+    context.fillRect(400,250,100,100);
+
+    context.rotate(Math.PI/180*15);
+    context.fillRect(400,250,100,100);
+&lt;/script&gt;
+</code></pre><ul>
+<li>rotate(angle)：用于以原点为中心旋转 canvas。<ul>
+<li>旋转的角度(angle)，它是顺时针方向的，以弧度为单位的值。</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;canvas id=&quot;canvas&quot; width=&quot;500px&quot; height=&quot;500px&quot; style=&quot;background:pink&quot;&gt;&lt;/canvas&gt;
+&lt;script&gt;
+    var canvas = document.getElementById(&quot;canvas&quot;);
+    var context = canvas.getContext(&quot;2d&quot;);
+    // 缩放方法
+    context.scale(0.5,0.5);
+    context.fillRect(100,100,300,300);
+&lt;/script&gt;
+</code></pre><hr>
+<h3 id="chartjs库"><a href="#Chart-js库" class="headerlink" title="Chart.js库"></a>Chart.js库</h3><p>Chart.js是一个简单、面向对象、为设计者和开发者准备的图表绘制工具库。</p>
+<p>官方网址：<a href="http://www.chartjs.org/" target="_blank" rel="external">http://www.chartjs.org/</a></p>
+<p><strong>Chart.js的特点</strong></p>
+<ul>
+<li>基于HTML 5：Chart.js基于HTML5 canvas技术，支持所有现代浏览器，并且针对IE7/8提供了降级替代方案。</li>
+<li>简单、灵活：Chart.js不依赖任何外部工具库，轻量级（压缩之后仅有4.5k），并且提供了加载外部参数的方法。</li>
+</ul>
+<h4 id="如何使用chartjs框架"><a href="#如何使用Chart-js框架" class="headerlink" title="如何使用Chart.js框架"></a>如何使用Chart.js框架</h4><ul>
+<li><p>在HTML页面中引入Chart.js文件。</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>src="Chart.js">````</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 创建 ````&lt;canvas&gt;````元素：用于显示Chart图表的容器。</div><div class="line">	- ````&lt;canvas id=&quot;myChart&quot; width=&quot;400&quot; height=&quot;400&quot;&gt;&lt;/canvas&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>获取Canvas对象。</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 创建Chart图表对象。</div><div class="line">  -  ````new Chart(ctx);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>通过Chart图表对象进行绘制。</p>
+<ul>
+<li><code>chart.PolarArea(data);</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="chartjs全局配置"><a href="#Chart-js全局配置" class="headerlink" title="Chart.js全局配置"></a>Chart.js全局配置</h4><p>Chart.js 全局配置是在chart.js 第一个正式版本中引入。Chart.js 全局配置用于改变所有图表的类型，避免了需要在每一个图表中单独进行设置。当然，Chart.js 全局配置也可以专门为某一个特定的图表进行配置。</p>
+<p><strong>语法</strong></p>
+<p><code>Chart.defaults.global.参数名 = 参数值;</code></p>
+<p><strong>举例</strong></p>
+<p><code>Chart.defaults.global.responsive = true;</code></p>
+<h4 id="曲线图"><a href="#曲线图" class="headerlink" title="曲线图"></a>曲线图</h4><p>曲线图就是将多个数据点绘制在一条线上，通常被用于展示趋势的数据或两组数据之间的对比。</p>
+<p>new Chart(ctx).Line(data, options)</p>
+<ul>
+<li>data：用于设置曲线上的数据、样式及名称。</li>
+<li>options：选项，用于配置曲线图。</li>
+</ul>
+<h4 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h4><p>柱状图就是使用柱状方式显示数据的一种方式，通常被用于展示趋势的数据或多组数据之间的比较。</p>
+<p>new Chart(ctx).Bar(data, options)</p>
+<ul>
+<li>data：用于设置柱状图上的数据、样式及名称。</li>
+<li>options：选项，用于配置柱状图。</li>
+</ul>
+<h4 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h4><p>饼状图可能是所有图表中最为常用的一种，就是将一个圆划分成若干个部分，每个弧形展示每个数据的比例值。通常被用于展示多组数据之间的比例。</p>
+<p>new Chart(ctx).Pie(data,options)</p>
+<ul>
+<li>data：用于设置饼图的数据、样式及名称。</li>
+<li>options：选项，用于配置饼图。</li>
+</ul>
+<h4 id="雷达图"><a href="#雷达图" class="headerlink" title="雷达图"></a>雷达图</h4><p>雷达图就是一种展示多个数据点以及它们之间变化的方式，通常被用于比较点的两个或多个不同的数据集。</p>
+<p>new Chart(ctx).Radar(data, options)</p>
+<ul>
+<li>data：用于设置雷达图的数据、样式及名称。</li>
+<li>options：选项，用于配置雷达图。</li>
+</ul>
+<h4 id="环形图"><a href="#环形图" class="headerlink" title="环形图"></a>环形图</h4><p>环形图类似于饼状图，但环形图是一个空心的环形形状，通常被用于展示多组数据之间关系的比例。</p>
+<p>new Chart(ctx).Doughnut(data,options)</p>
+<ul>
+<li>data：用于设置环形图的数据、样式及名称。</li>
+<li>options：选项，用于配置环形图。</li>
+</ul>
+<h4 id="极地区域图"><a href="#极地区域图" class="headerlink" title="极地区域图"></a>极地区域图</h4><p>极地区域图类似于饼状图，但每一个扇形的角度和半径取决于不同的值，通常被用于需要展示类似于饼状图的比较数据的基础上，还需要展示范围值的比较。</p>
+<p>new Chart(ctx).PolarArea(data, options)</p>
+<ul>
+<li>data：用于设置极地区域图的数据、样式及名称。</li>
+<li>options：选项，</li>
+<li>用于配置极地区域图。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;html5简介&quot;&gt;&lt;a href=&quot;#HTML5简介&quot; class=&quot;headerlink&quot; title=&quot;HTML5简介&quot;&gt;&lt;/a&gt;HTML5简介&lt;/h3&gt;&lt;p&gt;HTML5 是 HTML 标准的下一个重要版本，用来替代 HTML 4.01，XHTML 1.0 以
+    
+    </summary>
+    
+      <category term="H5" scheme="http://yoursite.com/categories/H5/"/>
+    
+    
+      <category term="H5" scheme="http://yoursite.com/tags/H5/"/>
+    
+  </entry>
   
   <entry>
     <title>jQuery(二)</title>
